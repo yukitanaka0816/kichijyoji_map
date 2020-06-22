@@ -20,7 +20,7 @@ class CreateShopItemsTable extends Migration
             $table->string('name');
             $table->string('information');
             $table->string('image');
-            $table->int('status');
+            $table->integer('status');
             $table->decimal('lat', 10, 7);
             $table->decimal('lng', 10, 7);
             $table->string('varchar');
