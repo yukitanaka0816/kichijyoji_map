@@ -14,8 +14,9 @@
 
 Route::get('/', function () {
     return view('welcome');
-    
 });
+
+
 
 //お店選択画面
 Route::get('shop_items', 'ShopItemController@index');
@@ -42,9 +43,9 @@ Route::patch('wants', 'WantController@update');
 
 
 //口コミ投稿、閲覧画面
-Route::get('comments', 'CommentController@index');
+Route::get('/comments', 'CommentController@index');
 
-Route::post('comments', 'CommentController@store');
+Route::post('/comments', 'CommentController@store');
 
 
 
@@ -52,7 +53,6 @@ Route::post('comments', 'CommentController@store');
 Route::get('/inquiries', 'InquiryController@index');
 
 ROute::post('/inquiries', 'InquiryController@store');
-
 
 
 
