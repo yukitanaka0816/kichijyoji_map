@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -13,7 +14,8 @@
 
 Route::get('/', function () {
     return view('welcome');
-});    
+});
+
 
 
 //お店選択画面
@@ -50,7 +52,7 @@ Route::post('/comments', 'CommentController@store');
 //お問い合わせ画面
 Route::get('/inquiries', 'InquiryController@index');
 
-ROute::post('/inquiries', 'InquiryController@store');
+Route::post('/inquiries', 'InquiryController@store');
 
 
 
