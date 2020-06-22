@@ -13,4 +13,8 @@
 
 Route::get('/', function () {
     return view('welcome');
+    
+Route::resource('shop_items', 'shop_itemsController');
+
+
 });
