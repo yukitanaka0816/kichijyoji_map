@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -29,27 +30,28 @@ Route::post('shop_items/{shop_id}', 'CommentController@store')->name('shop_items
 
 
 //ルート作成画面
-Route::get('wants', 'WantController@index')->name('wants');
+Route::get('/wants', 'WantController@index')->name('wants');
 
-Route::post('wants/{shop_id}', 'WantController@show')->name('wants.show');
+Route::post('/wants/{shop_id}', 'WantController@show')->name('wants.show');
 
-Route::delete('wants', 'WantController@destroy')->name('wants.destroy');
+Route::delete('/wants', 'WantController@destroy')->name('wants.destroy');
 
-Route::patch('wants', 'WantController@update')->name('wants.update');
+Route::patch('/wants', 'WantController@update')->name('wants.update');
 
 
 
 //口コミ投稿、閲覧画面
-Route::get('comments', 'CommentController@index')->name('comments');
+Route::get('/comments', 'CommentController@index')->name('comments');
 
-Route::post('comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments', 'CommentController@store')->name('comments.store');
+
 
 
 
 //お問い合わせ画面
-Route::get('inquiries', 'InquiryController@index')->name('inquiries');
+Route::get('/inquiries', 'InquiryController@index')->name('inquiries');
 
-ROute::post('inquiries', 'InquiryController@store')->name('inquiries.store');
+ROute::post('/inquiries', 'InquiryController@store')->name('inquiries.store');
 
 
 //ログイン
