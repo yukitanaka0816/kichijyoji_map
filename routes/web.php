@@ -19,13 +19,13 @@ Route::get('/', function () {
 //お店選択画面
 Route::get('/shop_items', 'ShopItemController@index')->name('shop_items');
 
-Route::post('shop_items/{category_id}', 'ShopItemController@category')->name('shop_items.category');
+Route::post('/shop_items/{category_id}', 'ShopItemController@category')->name('shop_items.category');
 
-Route::get('shop_items/{shop_id}', 'ShopItemController@show')->name('shop_items.show');
+Route::get('/shop_items/{shop_id}', 'ShopItemController@show')->name('shop_items.show');
 
-Route::PATCH('shop_items/{shop_id}', 'ShopItemController@toggleWant')->name('shop_items.wants');
+Route::PATCH('/shop_items/{shop_id}', 'ShopItemController@toggleWant')->name('shop_items.wants');
 
-Route::post('shop_items/{shop_id}', 'CommentController@store')->name('shop_items.store');
+Route::post('/shop_items/{shop_id}', 'CommentController@store')->name('shop_items.store');
 
 
 
