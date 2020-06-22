@@ -16,9 +16,10 @@ class CommentController extends Controller
     
     //口コミ一覧を表示
     public function index() {
+        $reviews;
         return view('comments.index', [
             'title' => '口コミ一覧',
-            //'comments' => $comments,
+            'reviews' => $reviews,
             ]);
     }
     

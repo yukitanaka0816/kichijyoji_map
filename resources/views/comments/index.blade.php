@@ -1,8 +1,8 @@
-{{--@extends('layouts.logged_in')
+@extends('layouts.logged_in')
 
 @section('title', $title)
 
-@section('content')--}}
+@section('content')
     <h1>{{$title}}</h1>
     <form methos="post" action="{{ url('/comments') }}">
         @csrf
