@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    // //アクセス制限
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    //アクセス制限
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     //口コミ一覧を表示
     public function index() {
