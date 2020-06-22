@@ -16,4 +16,15 @@
             <input type="submit" value="投稿">
         </div>
     </form>
+    <ul>
+        @forelse($reviews as $review)
+        <li>{{$review->name}}<br>
+            {{$review->body}}<br>
+            {{$review->created_at}}
+        </li>
+        @empty
+        <li>口コミはありません</li>
+        @endforelse
+    </ul>
+@endsection
     

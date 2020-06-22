@@ -41,9 +41,9 @@ Route::patch('wants', 'WantController@update');
 
 
 //口コミ投稿、閲覧画面
-Route::get('/comments', 'CommentController@index');
+Route::get('comments', 'CommentController@index');
 
-Route::post('/comments', 'CommentController@store');
+Route::post('comments', 'CommentController@store');
 
 
 
