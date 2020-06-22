@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-    
+});    
 
 
 //お店選択画面
@@ -54,4 +54,4 @@ ROute::post('/inquiries', 'InquiryController@store');
 
 
 
-});
+
