@@ -61,39 +61,59 @@
           markers.push(marker);
         }
         
-        function postForm(shop_item) {
+        //postForm ajaxじゃない版
+        // function postForm(shop_item) {
           
-          //要素を作成
-          var form = document.createElement('form');
-          var request = document.createElement('input');
-          var token = document.createElement('input');
-          var div = document.createElement('div');
-          var p_name = document.createElement('p');
-          var p_ours = document.createElement('p');
+        //   //要素を作成
+        //   var form = document.createElement('form');
+        //   var request = document.createElement('input');
+        //   var token = document.createElement('input');
+        //   var div = document.createElement('div');
+        //   var p_name = document.createElement('p');
+        //   var p_ours = document.createElement('p');
           
-          //p要素の中身を定義
-          p_name.innerHTML = shop_item['name'];
-          p_ours.innerHTML = shop_item['business_ours'];
+        //   //p要素の中身を定義
+        //   p_name.innerHTML = shop_item['name'];
+        //   p_ours.innerHTML = shop_item['business_ours'];
           
-          //メソッド、パスを指定
-          form.method = 'POST';
-          form.action = '/shop_items/' + shop_item['id'];
+        //   //メソッド、パスを指定
+        //   form.method = 'POST';
+        //   form.action = '/shop_items/' + shop_item['id'];
           
-          //タイプ、バリューを指定
-          request.type = 'submit';
-          request.value = '詳細';
-          token.type = 'hidden';
-          token.name = '_token';
-          token.value = '{{ csrf_token() }}';
+        //   //タイプ、バリューを指定
+        //   request.type = 'submit';
+        //   request.value = '詳細';
+        //   token.type = 'hidden';
+        //   token.name = '_token';
+        //   token.value = '{{ csrf_token() }}';
         
           
-          //要素に要素を追加
-          form.appendChild(request);
-          div.appendChild(p_name);
-          div.appendChild(p_ours);
-          div.appendChild(form);
+        //   //要素に要素を追加
+        //   form.appendChild(request);
+        //   div.appendChild(p_name);
+        //   div.appendChild(p_ours);
+        //   div.appendChild(form);
           
-          //作成したdivboxをinfoWindowのcontent内に追加
+        //   //作成したdivboxをinfoWindowのcontent内に追加
+        //   return div;
+        // }
+        
+        //postForm ajax版
+        function postForm(shop_item) {
+          
+          //divboxを生成
+          var div = document.createElement('div');
+          //ボタンを生成
+          var button = document.createElement('button');
+          
+          //ボタンのテキストを定義
+          button.innerHTML = '詳細';
+          //ボタンのidを定義
+          button.id = 'box';
+          
+          //divにそれぞれの要素を追加
+          div.appendChild(button);
+          
           return div;
         }
         
