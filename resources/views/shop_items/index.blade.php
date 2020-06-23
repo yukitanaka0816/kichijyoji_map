@@ -5,13 +5,12 @@
 @section('content')
     <h1>{{ $title }}</h1>
     <div id="map_box"></div>
+    <p id="detail_box"></p>
     
     
-    
-    
-    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
     <script>
-      
+      //最初に読み込み
       function init(){
         
         //吉祥寺の位置情報を定義
@@ -22,7 +21,7 @@
         
         //店舗情報をjs形式で定義
         var shop_items = @json($shop_items);
-        
+
         //mapを表示
         var map = new google.maps.Map(
           map_box,
@@ -48,9 +47,11 @@
             position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"])
           });
           
-          // let infoWindow = new google.maps.InfoWindow({
-          //   content: postForm(shop_items[i])
-          // });
+
+          let infoWindow = new google.maps.InfoWindow({
+            content: infoContent(shop_items[i])
+          });
+
           
           //マーカーにイベントを追加
           marker.addListener('click', function(){
@@ -98,36 +99,96 @@
         //   return div;
         // }
         
-        //postForm ajax版
-        // function postForm(shop_item) {
+        //detailButton ajax版
+        function infoContent(shop_item) {
+          //divboxを生成
+          var div = document.createElement('div');
+          //ボタンを生成
+          var detail_button = document.createElement('button');
+          var add_button = document.createElement('button');
+          //テキストを生成
+          var p_name = document.createElement('p');
+          var p_hours = document.createElement('p');
           
-        //   //divboxを生成
-        //   var div = document.createElement('div');
-        //   //ボタンを生成
-        //   var button = document.createElement('button');
-        //   //テキストを生成
-        //   var p_name = document.createElement('p');
-        //   var p_hours = document.createElement('p');
+          //innnerHTMLを設定
+          p_name.innerHTML = shop_item['name'];
+          p_hours.innerHTML = shop_item['business_hours'];
           
-        //   //innnerHTMLを設定
-        //   p_name.innerHTML = shop_item['name'];
-        //   p_hours.innerHTML = shop_item['business_hours'];
+          //ボタンのテキストを定義
+          detail_button.innerHTML = '詳細';
+          add_button.innerHTML = 'ルートに追加';
+          //ボタンのidを定義
+          detail_button.id = 'detail' + shop_item['id'];
+          add_button.id = 'add' + shop_item['id'];
           
-        //   //ボタンのテキストを定義
-        //   button.innerHTML = '詳細';
-        //   //ボタンのidを定義
-        //   button.id = 'box';
+          //divにそれぞれの要素を追加
+          div.appendChild(p_name);
+          div.appendChild(p_hours);
+          div.appendChild(detail_button);
+          div.appendChild(add_button);
           
-        //   //divにそれぞれの要素を追加
-        //   div.appendChild(p_name);
-        //   div.appendChild(p_hours);
-        //   div.appendChild(button);
-          
-        //   return div;
-        // }
+          return div;
+        }
+
         
       }
+      
+      //csrfトークンの埋め込み
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+      
+      //詳細ボタンクリック時のfunction
+      $(function(){
+        //button#detailがクリックされたときに
+        $('#detail' + shop_item["id"]).on('click', function(){
+          
+          //ajaxでリクエストを送信
+          $.ajax({
+            url: '/shop_items/show/' + shop_item["id"],
+            type: 'POST',
+            data: {'shop_id': shop_item["id"]},
+          })
+          //ajaxリクエスト成功時の処理
+          .done(function(data){
+            //laravel内で処理された結果($shop_item_info)がdataに入って返ってくる
+            $('#detail_box').text(data);
+          })
+          //ajaxリクエスト失敗時の処理
+          .fail(function(data){
+            alert('ajaxリクエスト失敗');
+          });
+          
+        });
+        
+      });
+      
+      //ルート追加ボタンクリック時のfunction
+      $(function(){
+        //button#addがクリックされたときに
+        $('#add' + shop_item["id"]).on('click', function(){
+          
+          //ajaxでリクエストを送信
+          $.ajax({
+            url: '/shop_items/' + shop_item["id"],
+            type: 'POST',
+            data: {'shop_id': shop_item["id"]},
+          })
+          //ajaxリクエスト成功時の処理
+          .done(function(data){
+            //laravel内で処理された結果がdataに入って返ってくる
+            alert('ルート追加成功');
+          })
+          //ajaxリクエスト失敗時の処理
+          .fail(function(data){
+            alert('ajaxリクエスト失敗');
+          });
+          
+        });
+        
+      });
     </script>
-    
     <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
 @endsection
