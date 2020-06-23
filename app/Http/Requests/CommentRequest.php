@@ -25,8 +25,8 @@ class CommentRequest extends FormRequest
     {
         return [
             'shop_id' => ['required'],
-            'comments' => ['required', 'max:200'],
-            'status' => [],
+            'comments' => ['required', 'max:500'],
+            //'status' => ['required'],
         ];
     }
 }
