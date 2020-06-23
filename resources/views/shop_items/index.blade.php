@@ -48,9 +48,9 @@
             position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"])
           });
           
-          let infoWindow = new google.maps.InfoWindow({
-            content: postForm(shop_items[i])
-          });
+          // let infoWindow = new google.maps.InfoWindow({
+          //   content: postForm(shop_items[i])
+          // });
           
           //マーカーにイベントを追加
           marker.addListener('click', function(){
@@ -74,7 +74,7 @@
           
         //   //p要素の中身を定義
         //   p_name.innerHTML = shop_item['name'];
-        //   p_ours.innerHTML = shop_item['business_ours'];
+        //   p_ours.innerHTML = shop_item['business_hours'];
           
         //   //メソッド、パスを指定
         //   form.method = 'POST';
@@ -99,30 +99,32 @@
         // }
         
         //postForm ajax版
-        function postForm(shop_item) {
+        // function postForm(shop_item) {
           
-          //divboxを生成
-          var div = document.createElement('div');
-          //ボタンを生成
-          var button = document.createElement('button');
-          //テキストを生成
-          var p_name = document.createElement('p');
-          var p_hours = document.createElement('p');
-          //innnerHTMLを設定
-          p_name = 
+        //   //divboxを生成
+        //   var div = document.createElement('div');
+        //   //ボタンを生成
+        //   var button = document.createElement('button');
+        //   //テキストを生成
+        //   var p_name = document.createElement('p');
+        //   var p_hours = document.createElement('p');
           
-          //ボタンのテキストを定義
-          button.innerHTML = '詳細';
-          //ボタンのidを定義
-          button.id = 'box';
+        //   //innnerHTMLを設定
+        //   p_name.innerHTML = shop_item['name'];
+        //   p_hours.innerHTML = shop_item['business_hours'];
           
-          //divにそれぞれの要素を追加
-          div.appendChild(p_name);
-          div.appendChild(p_hours);
-          div.appendChild(button);
+        //   //ボタンのテキストを定義
+        //   button.innerHTML = '詳細';
+        //   //ボタンのidを定義
+        //   button.id = 'box';
           
-          return div;
-        }
+        //   //divにそれぞれの要素を追加
+        //   div.appendChild(p_name);
+        //   div.appendChild(p_hours);
+        //   div.appendChild(button);
+          
+        //   return div;
+        // }
         
       }
     </script>

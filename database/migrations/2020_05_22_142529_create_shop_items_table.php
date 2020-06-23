@@ -23,7 +23,6 @@ class CreateShopItemsTable extends Migration
             $table->integer('status');
             $table->decimal('lat', 10, 7);
             $table->decimal('lng', 10, 7);
-            $table->string('varchar');
             $table->string('url');
             $table->timestamps();
             
