@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Wants;
+use App\ShopItems;
+
 class WantController extends Controller
 {
     //アクセス制限
@@ -13,7 +16,7 @@ class WantController extends Controller
     }
     
     public function index(){
-        $wants = Wants::where('user_id', \Auth::user()->id)->get();
+        $wants = \Auth::user()->wants;
         return view('wants.index', [
             'title' => 'ルート作成画面',
             'wants' => $wants,
