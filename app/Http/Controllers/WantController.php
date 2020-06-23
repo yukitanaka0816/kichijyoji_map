@@ -13,8 +13,10 @@ class WantController extends Controller
     }
     
     public function index(){
+        $wants = Wants::where('user_id', \Auth::user()->id)->get();
         return view('wants.index', [
             'title' => 'ルート作成画面',
+            'wants' => $wants,
         ]);
     }
     
