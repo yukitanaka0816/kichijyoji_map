@@ -25,7 +25,7 @@ Route::post('/shop_items/show/{shop_id}', 'ShopItemController@show')->name('shop
 
 Route::post('/shop_items/{shop_id}', 'ShopItemController@toggleWant')->name('shop_items.wants');
 
-Route::post('/shop_items/{shop_id}', 'CommentController@store')->name('shop_items.store');
+Route::post('/shop_items/store/{shop_id}', 'CommentController@top_store')->name('shop_items.store');
 
 
 

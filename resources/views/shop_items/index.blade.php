@@ -5,7 +5,10 @@
 @section('content')
     <h1>{{ $title }}</h1>
     <div id="map_box"></div>
-    <p id="detail_box"></p>
+    <div>
+      <div id="shop_item_info"></div>
+      <div id="comments"></div>
+    </div>
     
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
@@ -106,6 +109,7 @@
           //ボタンを生成
           var detail_button = document.createElement('button');
           var add_button = document.createElement('button');
+          var comment_button = document.createElement('button');
           //テキストを生成
           var p_name = document.createElement('p');
           var p_hours = document.createElement('p');
@@ -117,14 +121,17 @@
           //ボタンのテキストを定義
           detail_button.innerHTML = '詳細';
           add_button.innerHTML = 'ルートに追加';
+          comment_button.innerHTML = 'コメントを追加'
           //ボタンのidを定義
           detail_button.id = 'detail' + shop_item['id'];
           add_button.id = 'add' + shop_item['id'];
+          comment_button.id = 'comment' + shop_item['id'];
           
           //divにそれぞれの要素を追加
           div.appendChild(p_name);
           div.appendChild(p_hours);
           div.appendChild(detail_button);
+          div.appendChild(comment_button);
           div.appendChild(add_button);
           
           return div;
@@ -154,7 +161,8 @@
           //ajaxリクエスト成功時の処理
           .done(function(data){
             //laravel内で処理された結果($shop_item_info)がdataに入って返ってくる
-            $('#detail_box').text(data);
+            $('#shop_item_info').text(data['shop_item_info']);
+            $('#comments').text(data['comments']);
           })
           //ajaxリクエスト失敗時の処理
           .fail(function(data){
@@ -186,6 +194,15 @@
             alert('ajaxリクエスト失敗');
           });
           
+        });
+        
+      });
+      
+      //コメント追加ボタンクリック時のfunction
+      $(function(){
+        //button#addがクリックされたときに
+        $('#comment' + shop_item["id"]).on('click', function(){
+          window.location.href = '/comments/' + shop_item["id"];
         });
         
       });

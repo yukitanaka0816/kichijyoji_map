@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\ShopItems;
 use App\Wants;
+use App\Comment;
 
 class ShopItemController extends Controller
 {
@@ -42,9 +43,15 @@ class ShopItemController extends Controller
         $shop_id = $data['shop_id'];
         
         //選択された店舗の情報を取得
-        $shop_item_info = ShopItems::where('id', $shop_id)->get();
+        $shop_item_info = ShopItems::where('id', '=', $shop_id)->get();
         
-        return $shop_item_info;
+        //選択された店舗のコメント情報を取得
+        $comments = Comment::where('shop_id', '=', $shop_id)->get();
+        
+        //データをまとめてreturn
+        $shop_data = ["shop_item_info" => $shop_item_info, "comments" => $comments];
+        
+        return $shop_data;
     }
     
     
