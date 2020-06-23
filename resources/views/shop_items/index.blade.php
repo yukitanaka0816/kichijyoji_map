@@ -7,7 +7,8 @@
     <div id="map_box"></div>
     
     
-    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
+    
+    
     
     <script>
       function init(){
@@ -29,4 +30,6 @@
         )
       }
     </script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
 @endsection
