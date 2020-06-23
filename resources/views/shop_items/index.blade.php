@@ -12,22 +12,30 @@
     
     <script>
       function init(){
-        var shinagawa = {
-          lat: 35.6284477,
-          lng: 139.7366322
+        
+        //吉祥寺の位置情報を定義
+        var kichijoji = {
+          lat: 35.702969,
+          lng: 139.579765
         };
-        var map_box = document.getElementById('map_box');
-        var map = new google.maps.Map(
-          map_box, // 第１引数はマップ表示対象の要素。
-          {
-            // 第２引数で各種オプションを設定
-            center: shinagawa, // 地図の中心を品川に
-            zoom: 15, // 拡大のレベルを15に。（1 - 18くらい）
-            disableDefaultUI: true, // 各種UIをOFFに
-            zoomControl: true, // 拡大縮小だけできるように
-            clickableIcons: false, // クリック関連の機能をoffに。
-          }
-        )
+                
+        
+        // var shop_items = '{{ $shop_items }}';
+        // console.log(shop_items);
+        
+        // var shop_items_json = '{{ $shop_items_json }}';
+        // console.log(shop_items_json);
+        
+        // var shop_items_json = JSON.parse('{{ $shop_items_json }}');
+        // console.log(shop_items_json);
+        
+        // var shop_item_name = shop_items[1]["name"];
+        // console.log(shop_item_name);
+        
+        var shop_items = @json($shop_items);
+        console.log(shop_items);
+        
+        console.log(shop_items[0]["name"]);
       }
     </script>
     
