@@ -11,6 +11,7 @@
     
     
     <script>
+      
       function init(){
         
         //吉祥寺の位置情報を定義
@@ -65,6 +66,7 @@
           //要素を作成
           var form = document.createElement('form');
           var request = document.createElement('input');
+          var token = document.createElement('input');
           var div = document.createElement('div');
           var p_name = document.createElement('p');
           var p_ours = document.createElement('p');
@@ -75,11 +77,15 @@
           
           //メソッド、パスを指定
           form.method = 'POST';
-          form.action = "{{ route('shop_items.show', $shop_item->id) }}";
+          form.action = '/shop_items/' + shop_item['id'];
           
           //タイプ、バリューを指定
           request.type = 'submit';
           request.value = '詳細';
+          token.type = 'hidden';
+          token.name = '_token';
+          token.value = '{{ csrf_token() }}';
+        
           
           //要素に要素を追加
           form.appendChild(request);

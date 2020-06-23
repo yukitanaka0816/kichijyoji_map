@@ -21,7 +21,7 @@ Route::get('/shop_items', 'ShopItemController@index')->name('shop_items');
 
 Route::post('/shop_items/{category_id}', 'ShopItemController@category')->name('shop_items.category');
 
-Route::get('/shop_items/{shop_id}', 'ShopItemController@show')->name('shop_items.show');
+Route::post('/shop_items/{shop_id}', 'ShopItemController@show')->name('shop_items.show');
 
 Route::PATCH('/shop_items/{shop_id}', 'ShopItemController@toggleWant')->name('shop_items.wants');
 
