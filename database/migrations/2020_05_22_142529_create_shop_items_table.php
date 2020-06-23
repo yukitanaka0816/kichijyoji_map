@@ -16,7 +16,7 @@ class CreateShopItemsTable extends Migration
         Schema::create('shop_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('business_ours');
+            $table->string('business_hours');
             $table->string('name');
             $table->string('information');
             $table->string('image');

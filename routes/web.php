@@ -41,9 +41,10 @@ Route::patch('/wants', 'WantController@update')->name('wants.update');
 
 
 //口コミ投稿、閲覧画面
-Route::get('/comments', 'CommentController@index')->name('comments');
+Route::get('/comments/{shop_id}', 'CommentController@show')->name('comments.show');
 
-Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments{shop_id}', 'CommentController@store')->name('comments.store');
+
 
 
 
