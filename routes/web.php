@@ -55,5 +55,11 @@ Route::get('/inquiries', 'InquiryController@index')->name('inquiries');
 ROute::post('/inquiries', 'InquiryController@store')->name('inquiries.store');
 
 
+
+// 管理者画面（お問い合わせ内容一覧）
+Route::get('/admin/inquiries', 'AdminController@index');
+
+
+
 //ログイン
 Auth::routes();
