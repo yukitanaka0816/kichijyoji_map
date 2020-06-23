@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Inquire;
+use App\Http\Requests\InquiryForm;
 
 class InquiryController extends Controller
 {
@@ -18,7 +20,13 @@ class InquiryController extends Controller
         ]);
     }
     
-    public function store() {
-        
+    public function store(InquiryForm $request) {
+        Inquire::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'content' => $request->content,
+        ]);
+        \Session::flash('success', 'お問い合わせを送信しました');
+        return redirect('/inquiries');
     }
 }
