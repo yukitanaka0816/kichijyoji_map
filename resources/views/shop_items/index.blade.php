@@ -105,6 +105,11 @@
           var div = document.createElement('div');
           //ボタンを生成
           var button = document.createElement('button');
+          //テキストを生成
+          var p_name = document.createElement('p');
+          var p_hours = document.createElement('p');
+          //innnerHTMLを設定
+          p_name = 
           
           //ボタンのテキストを定義
           button.innerHTML = '詳細';
@@ -112,6 +117,8 @@
           button.id = 'box';
           
           //divにそれぞれの要素を追加
+          div.appendChild(p_name);
+          div.appendChild(p_hours);
           div.appendChild(button);
           
           return div;
