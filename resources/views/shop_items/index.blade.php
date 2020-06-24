@@ -64,45 +64,9 @@
           //マーカーを配列にpushして代入
           markers.push(marker);
         }
+
         
-        //postForm ajaxじゃない版
-        // function postForm(shop_item) {
-          
-        //   //要素を作成
-        //   var form = document.createElement('form');
-        //   var request = document.createElement('input');
-        //   var token = document.createElement('input');
-        //   var div = document.createElement('div');
-        //   var p_name = document.createElement('p');
-        //   var p_ours = document.createElement('p');
-          
-        //   //p要素の中身を定義
-        //   p_name.innerHTML = shop_item['name'];
-        //   p_ours.innerHTML = shop_item['business_hours'];
-          
-        //   //メソッド、パスを指定
-        //   form.method = 'POST';
-        //   form.action = '/shop_items/' + shop_item['id'];
-          
-        //   //タイプ、バリューを指定
-        //   request.type = 'submit';
-        //   request.value = '詳細';
-        //   token.type = 'hidden';
-        //   token.name = '_token';
-        //   token.value = '{{ csrf_token() }}';
-        
-          
-        //   //要素に要素を追加
-        //   form.appendChild(request);
-        //   div.appendChild(p_name);
-        //   div.appendChild(p_ours);
-        //   div.appendChild(form);
-          
-        //   //作成したdivboxをinfoWindowのcontent内に追加
-        //   return div;
-        // }
-        
-        //detailButton ajax版
+        //detailButton
         function infoContent(shop_item) {
           //divboxを生成
           var div = document.createElement('div');
@@ -120,12 +84,62 @@
           
           //ボタンのテキストを定義
           detail_button.innerHTML = '詳細';
+          detail_button.className = 'detail';
+          detail_button.dataset.shop_item_id = shop_item['id'];
+          
+          //detail_buttonに処理を追加
+          $(detail_button).on('click', function(){
+            //ajaxでリクエストを送信
+            $.ajax({
+              url: '/shop_items/show/' + $(this).data('shop_item_id'),
+              type: 'POST',
+              data: {'shop_id': $(this).data('shop_item_id')},
+            })
+            //ajaxリクエスト成功時の処理
+            .done(function(data){
+              //laravel内で処理された結果($shop_item_info)がdataに入って返ってくる
+              $('#shop_item_info').text(data['shop_item_info']);
+              $('#comments').text(data['comments']);
+            })
+            //ajaxリクエスト失敗時の処理
+            .fail(function(data){
+              alert('ajaxリクエスト失敗');
+            });
+          });
+          
           add_button.innerHTML = 'ルートに追加';
-          comment_button.innerHTML = 'コメントを追加'
-          //ボタンのidを定義
-          detail_button.id = 'detail' + shop_item['id'];
-          add_button.id = 'add' + shop_item['id'];
-          comment_button.id = 'comment' + shop_item['id'];
+          add_button.className = 'add_wants';
+          add_button.dataset.shop_item_id = shop_item['id'];
+          
+          //add_buttonに処理を追加
+          $(add_button).on('click', function(){
+            //ajaxでリクエストを送信
+            $.ajax({
+              url: '/shop_items/wants/' + $(this).data('shop_item_id'),
+              type: 'POST',
+              data: {'shop_id': $(this).data('shop_item_id')},
+            })
+            //ajaxリクエスト成功時の処理
+            .done(function(data){
+              //laravel内で処理された結果がdataに入って返ってくる
+              alert(data);
+            })
+            //ajaxリクエスト失敗時の処理
+            .fail(function(data){
+              console.log(data);
+              alert('ajaxリクエスト失敗');
+            });
+          });
+          
+          
+          comment_button.innerHTML = 'コメントを追加';
+          comment_button.className = 'add_comment';
+          comment_button.dataset.shop_item_id = shop_item['id'];
+          
+          //comment_buttonに処理を追加
+        $(comment_button).on('click', function(){
+          window.location.href = '/comments/' + $(this).data('shop_item_id');
+        });
           
           //divにそれぞれの要素を追加
           div.appendChild(p_name);
@@ -136,8 +150,6 @@
           
           return div;
         }
-
-        
       }
       
       //csrfトークンの埋め込み
@@ -147,65 +159,7 @@
         }
       });
       
-      //詳細ボタンクリック時のfunction
-      $(function(){
-        //button#detailがクリックされたときに
-        $('#detail' + shop_item["id"]).on('click', function(){
-          
-          //ajaxでリクエストを送信
-          $.ajax({
-            url: '/shop_items/show/' + shop_item["id"],
-            type: 'POST',
-            data: {'shop_id': shop_item["id"]},
-          })
-          //ajaxリクエスト成功時の処理
-          .done(function(data){
-            //laravel内で処理された結果($shop_item_info)がdataに入って返ってくる
-            $('#shop_item_info').text(data['shop_item_info']);
-            $('#comments').text(data['comments']);
-          })
-          //ajaxリクエスト失敗時の処理
-          .fail(function(data){
-            alert('ajaxリクエスト失敗');
-          });
-          
-        });
-        
-      });
       
-      //ルート追加ボタンクリック時のfunction
-      $(function(){
-        //button#addがクリックされたときに
-        $('#add' + shop_item["id"]).on('click', function(){
-          
-          //ajaxでリクエストを送信
-          $.ajax({
-            url: '/shop_items/' + shop_item["id"],
-            type: 'POST',
-            data: {'shop_id': shop_item["id"]},
-          })
-          //ajaxリクエスト成功時の処理
-          .done(function(data){
-            //laravel内で処理された結果がdataに入って返ってくる
-            alert('ルート追加成功');
-          })
-          //ajaxリクエスト失敗時の処理
-          .fail(function(data){
-            alert('ajaxリクエスト失敗');
-          });
-          
-        });
-        
-      });
-      
-      //コメント追加ボタンクリック時のfunction
-      $(function(){
-        //button#addがクリックされたときに
-        $('#comment' + shop_item["id"]).on('click', function(){
-          window.location.href = '/comments/' + shop_item["id"];
-        });
-        
-      });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
 @endsection

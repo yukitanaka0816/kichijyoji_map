@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\ShopItems;
 use App\Wants;
 use App\Comment;
+use App\Users;
 
 class ShopItemController extends Controller
 {
@@ -60,15 +61,22 @@ class ShopItemController extends Controller
         $data = $request->all();
         $shop_id = $data['shop_id'];
         
-        $user_id = Auth::user();
+        $user_id = \Auth::user()->id;
         
         Wants::create([
             'user_id' => $user_id,
             'shop_id' => $shop_id,
+            'order' => 1,
             ]);
+        
     }
     
     
     
-    
+    public function sample(){
+        
+        return view('samples.index', [
+            'title' => 'サンプル'
+            ]);
+    }
 }
