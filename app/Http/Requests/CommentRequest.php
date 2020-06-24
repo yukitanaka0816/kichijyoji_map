@@ -26,6 +26,12 @@ class CommentRequest extends FormRequest
         return [
             'shop_id' => ['required'],
             'comments' => ['required', 'max:500'],
+            'image' => [
+            'file', // ファイルがアップロードされている
+            'image', // 画像ファイルである
+            'mimes:jpeg,png', // 形式はjpegかpng
+            'dimensions:min_width=50,min_height=50,max_width=1000,max_height=1000', // 50*50 ~ 1000*1000 まで
+            ],
             //'status' => ['required'],
         ];
     }

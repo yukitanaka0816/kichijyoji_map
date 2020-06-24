@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('shop_id');
             $table->string('comments', 100);
+            $table->string('image');
             $table->integer('status');
             $table->timestamps();
             

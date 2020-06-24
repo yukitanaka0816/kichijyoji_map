@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['user_id', 'shop_id', 'comments'];
+    protected $fillable = ['user_id', 'shop_id', 'comments', 'image', 'status'];
     
     public function shop_item() {
         return $this->belongTo('App\ShopItems');
