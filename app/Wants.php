@@ -16,5 +16,9 @@ class Wants extends Model
       return $query->with('shop')->where('user_id',\Auth::user()->id)->orderBy('order');
     }
     
-    public $fillable = ['order'];
+    protected $fillable = [
+        'user_id', 
+        'shop_id',
+        'order'
+    ];
 }

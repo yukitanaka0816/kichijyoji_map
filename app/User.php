@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Comment;
 
 class User extends Authenticatable
 {
@@ -37,7 +38,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+<<<<<<< HEAD
     public function user_wants(){
         return $this->hasMany('App\Wants');
+=======
+    //コメントとのリレーション
+    public function comments() {
+        return $this->hasOne('App\Comment');
+>>>>>>> develop
     }
 }

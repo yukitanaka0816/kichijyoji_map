@@ -8,7 +8,5 @@ use App\Wants;
 
 class ShopItems extends Model
 {
-    public function wants_shops(){
-      return $this->hasMany('App\Wants');
-    }
+    protected $fillable = ['user_id', 'name', 'information', 'business_hours', 'image', 'lat', 'lng', 'status', 'url'];
 }
