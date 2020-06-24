@@ -2,6 +2,10 @@
 
 @section('title', $title)
 
+@section('style')
+<link rel="stylesheet" href="{{ secure_asset('css/post.css') }}">
+@endsection
+
 @section('content')
 <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{config('api.api_key')}}&callback=init" async defer></script>
 <script type="text/javascript">
@@ -23,7 +27,7 @@
       };
 
       // getElementById("map")の"map"は、body内の<div id="map">より
-      map = new google.maps.Map(document.getElementById("map"), opts);
+      map = new google.maps.Map(document.getElementById("map_box"), opts);
 
       google.maps.event.addListener(map, 'click', mylistener);
       
@@ -139,6 +143,6 @@
         <button id="search">検索</button>
         <p id="search_result"></p>
     </div>
-    <div id="map" style="height:560px"></div>
+    <div id="map_box"></div>
 </body>
 @endsection
