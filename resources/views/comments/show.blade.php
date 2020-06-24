@@ -2,6 +2,10 @@
 
 @section('title', $title)
 
+@section('style')
+<link rel="stylesheet" href="{{ secure_asset('css/comment.css') }}">
+@endsection
+
 @section('content')
 <div class="row">
     <div class="col-lg-7 col-sm-12">
