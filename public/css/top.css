@@ -1,0 +1,45 @@
+
+.modal-title {
+    color: #216353;
+}
+
+.how_to:hover {
+    background-color: #99EFC8;
+}
+.navbar-logo {
+    width: 65%;
+}
+.navbar {
+    background-color: #ffffff;
+    border-bottom: thin solid #75daad;
+}
+.cat_img {
+    width: 15%;
+    margin: 0px 10px 10px 10px;
+}
+.article {
+    padding: 30px 20px 20px 20px;
+}
+body {
+        color: #216353;
+    }
+#map {
+    width: 80%;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.info_spot_name {
+    font-weight: bold; 
+}
+.info_img {
+    width: 40%;
+}
+.info_list {
+    list-style-type: none;
+    padding: 0px;
+}
+.ad_img {
+    width: 40%;
+}

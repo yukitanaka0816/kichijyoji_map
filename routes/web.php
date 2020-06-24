@@ -34,17 +34,22 @@ Route::get('/wants', 'WantController@index')->name('wants');
 
 Route::post('/wants/{shop_id}', 'WantController@show')->name('wants.show');
 
-Route::delete('/wants', 'WantController@destroy')->name('wants.destroy');
+Route::delete('/wants/{id}', 'WantController@destroy')->name('wants.destroy');
 
 Route::patch('/wants', 'WantController@update')->name('wants.update');
 
 
 
 //口コミ投稿、閲覧画面
-Route::get('/comments', 'CommentController@index')->name('comments');
+Route::get('/comments/{shop_id}', 'CommentController@show')->name('comments');
 
-Route::post('/comments', 'CommentController@store')->name('comments.store');
+Route::post('/comments/{shop_id}', 'CommentController@store')->name('comments.store');
 
+
+//新規地点投稿
+Route::get('/post', 'PostPlaceController@index')->name('post.index');
+
+Route::post('/post', 'PostPlaceController@store')->name('post.store');
 
 
 
@@ -53,6 +58,23 @@ Route::get('/inquiries', 'InquiryController@index')->name('inquiries');
 
 ROute::post('/inquiries', 'InquiryController@store')->name('inquiries.store');
 
+
+
+// 管理者画面
+// お問い合わせ内容一覧
+Route::get('/admin/inquiries', 'AdminController@index_inquiries');
+
+// 店舗一覧
+Route::get('/admin/shop_items', 'AdminController@index_shop_items');
+
+// ユーザー一覧
+Route::get('/admin/users', 'AdminController@index_users');
+
+// ユーザー削除
+Route::delete('/admin/users/{id}', 'AdminController@destroy_user');
+
+// 公開ステータス
+Route::patch('/admin/shop_items/{id}', 'AdminController@update_status');
 
 //ログイン
 Auth::routes();
