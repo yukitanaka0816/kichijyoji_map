@@ -38,13 +38,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-<<<<<<< HEAD
     public function user_wants(){
         return $this->hasMany('App\Wants');
-=======
+    }
     //コメントとのリレーション
     public function comments() {
         return $this->hasOne('App\Comment');
->>>>>>> develop
     }
 }
