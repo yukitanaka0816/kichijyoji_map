@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Wants;
+
 class ShopItems extends Model
 {
     protected $fillable = ['user_id', 'name', 'information', 'business_hours', 'image', 'lat', 'lng', 'status', 'url'];
