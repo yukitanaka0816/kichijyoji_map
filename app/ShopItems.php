@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopItems extends Model
 {
-    // 配列で取得できるプロパティを取得
-    public $fillable = ['user_id', 'bussiness_ours', 'name', 'information', 'image', 'status', 'lat', 'lng', 'url'];
+    protected $fillable = ['user_id', 'name', 'information', 'business_hours', 'image', 'lat', 'lng', 'status', 'url'];
+
 }
