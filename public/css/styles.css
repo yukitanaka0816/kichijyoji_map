@@ -2,3 +2,18 @@
     width: 800px;
     height: 600px;
 }
+
+body {
+    color: #216353;
+}
+.review_list {
+    list-style-type: none;
+    padding: 0px;
+}
+.review_img {
+    width: 40%;
+}
+#comment {
+    width: 300px;
+    height: 200px;
+}
