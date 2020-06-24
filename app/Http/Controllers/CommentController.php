@@ -38,4 +38,16 @@ class CommentController extends Controller
         \Session::flash('success', '口コミを投稿しました');
         return redirect('/comments/' . $request->shop_id);
     }
+    
+    
+    //トップ画面から口コミを投稿
+    public function top_store(CommentRequest $request){
+        Comment::create([
+            'user_id' => \Auth::user()->id,
+            'shop_id' => $request->shop_id,
+            'comments' => $request->comments,
+            //'status' => $request ->status,
+            ]);
+        \Session::flash('success', '口コミを投稿しました');
+    }
 }
