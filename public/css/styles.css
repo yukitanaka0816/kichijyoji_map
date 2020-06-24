@@ -2,3 +2,34 @@
     width: 800px;
     height: 600px;
 }
+.footer {
+    background-color: #75daad;
+    color: #216353;
+}
+.contact {
+    color: #216353;
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+}
+.btn-flat-logo:hover {
+    background-color: #75daad;
+}
+.how_to {
+    color: #216353;
+    background-color: #75daad;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    transition: .4s;
+    border: none;
+}
+.navbar {
+    background-color: #ffffff;
+    border-bottom: thin solid #75daad;
+}
+.navbar-logo {
+    width: 65%;
+}
