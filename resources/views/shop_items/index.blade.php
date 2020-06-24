@@ -5,9 +5,12 @@
 @section('content')
     <h1>{{ $title }}</h1>
     <div id="map_box"></div>
-    <div>
+    <div id="side">
+      <div id="shop_name"></div>
+      <div id="business_hours"></div>
       <div id="shop_item_info"></div>
-      <div id="comments"></div>
+      <div id="url"></div>
+      <img id="shop_image" src="">
     </div>
     
     
@@ -98,8 +101,23 @@
             //ajaxリクエスト成功時の処理
             .done(function(data){
               //laravel内で処理された結果($shop_item_info)がdataに入って返ってくる
-              $('#shop_item_info').text(data['shop_item_info']);
-              $('#comments').text(data['comments']);
+              $('#shop_name').text(data['shop_item_info'][0]['name']);
+              $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
+              $('#shop_item_info').text(data['shop_item_info'][0]['information']);
+              $('#url').text(data['shop_item_info'][0]['url']);
+              $('#shop_image').attr('src', '/' + data['shop_item_info'][0]['image']);
+              console.log(data['shop_item_info'][0]['image']);
+              //commentを生成
+              for (var i = 0; i < data['comments'].length; i++) {
+                //divboxを生成
+                $('<div>', {
+                  id: 'comment' + i,
+                }).appendTo('#side');
+                
+                //divboxのtextを追加
+                $('#comment' + i).text(data['comments'][i]['comments']);
+              }
+              
             })
             //ajaxリクエスト失敗時の処理
             .fail(function(data){
