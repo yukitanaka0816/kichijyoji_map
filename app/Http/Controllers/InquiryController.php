@@ -8,11 +8,6 @@ use App\Http\Requests\InquiryForm;
 
 class InquiryController extends Controller
 {
-    //アクセス制限
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index() {
         return view ('inquiries.index', [
@@ -29,4 +24,6 @@ class InquiryController extends Controller
         \Session::flash('success', 'お問い合わせを送信しました');
         return redirect('/inquiries');
     }
+    
+    
 }

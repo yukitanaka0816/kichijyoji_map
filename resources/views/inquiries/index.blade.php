@@ -5,6 +5,7 @@
 @section('content')
     <h1>{{ $title }}</h1>
     
+    <a href="{{ url('/shop_items') }}">トップページに戻る</a>
     <form method="post" action="{{ url('/inquiries') }}">
          @csrf
         <div>

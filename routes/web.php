@@ -55,9 +55,21 @@ ROute::post('/inquiries', 'InquiryController@store')->name('inquiries.store');
 
 
 
-// 管理者画面（お問い合わせ内容一覧）
-Route::get('/admin/inquiries', 'AdminController@index');
+// 管理者画面
+// お問い合わせ内容一覧
+Route::get('/admin/inquiries', 'AdminController@index_inquiries');
 
+// 店舗一覧
+Route::get('/admin/shop_items', 'AdminController@index_shop_items');
+
+// ユーザー一覧
+Route::get('/admin/users', 'AdminController@index_users');
+
+// ユーザー削除
+Route::delete('/admin/users/{id}', 'AdminController@destroy_user');
+
+// 公開ステータス
+Route::patch('/admin/shop_items/{id}', 'AdminController@update_status');
 
 
 //ログイン
