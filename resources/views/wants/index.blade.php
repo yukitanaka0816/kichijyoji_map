@@ -1,5 +1,9 @@
 @extends('layouts.logged_in')
 
+@section('style')
+<link rel="stylesheet" href="{{ secure_asset('css/wants.css') }}">
+@endsection
+
 @section('title', $title)
 
 @section('content')
