@@ -40,17 +40,17 @@ class PostPlaceController extends Controller
 
         ShopItems::create([
           'user_id' => \Auth::user()->id,
-          'business_hours' => $request->input('business_hours', '9:00-18:00'),
+          'business_hours' => '9:00-18:00',
           'name' => $request->name,
           'information' => $request->information,
           'image' => $filename, 
-          'status' => $request->input('status', '0'),
+          'status' => '0',
           'lat' => $request->lat,
           'lng' => $request->lng,
-          'url' => $request->url,
+          'url' => 'https://',
         ]);
         
         \Session::flash('success', '投稿を追加しました');
-        return redirect('/posts');
+        return redirect('/post');
       }
 }

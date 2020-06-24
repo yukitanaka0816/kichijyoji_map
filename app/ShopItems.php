@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShopItems extends Model
 {
-    protected $fillable = ['user_id', 'name', 'information'];
+    protected $fillable = ['user_id', 'name', 'information', 'business_hours', 'image', 'lat', 'lng', 'status', 'url'];
 }
