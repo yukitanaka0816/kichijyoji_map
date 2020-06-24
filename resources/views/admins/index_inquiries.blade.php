@@ -4,6 +4,16 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
+    
+    <div>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <input type="submit" value="ログアウト">
+        </form>
+    </div>
+    
+    <a href="{{ url('/admin/shop_items') }}">お店一覧ページ</a>
+    <a href="{{ url('/admin/users') }}">ユーザー一覧ページ</a>
     <ul>
         @forelse($inquires as $inquire)
             <li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
@@ -24,7 +25,15 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
      //ログイン後のリダイレクト先を変更
-    protected $redirectTo = '/shop_items';
+    // protected $redirectTo = '/shop_items';
+    protected function redirectTo()
+    {
+        if(Auth::user()->email == 'admin@admin.jp') {
+            return '/admin/inquiries';
+        } else {
+            return '/shop_items';
+        }
+    }
 
     public function __construct()
     {
