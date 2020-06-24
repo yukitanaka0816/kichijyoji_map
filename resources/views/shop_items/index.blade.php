@@ -1,21 +1,49 @@
 @extends('layouts.logged_in')
 
+@section('style')
+<link rel="stylesheet" href="{{ secure_asset('css/top.css') }}">
+@endsection
+
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
-    <div id="map_box"></div>
-    <div id="side">
-      <div id="shop_name"></div>
-      <div id="business_hours"></div>
-      <div id="shop_item_info"></div>
-      <div id="url"></div>
-      <img id="shop_image" src="">
-    </div>
+    <div class="article">
+        <h5>行きたいスポットを検索できます♪</h5>
+        <p>キーワードで検索する？<input type="text" name="keyword"><input type="submit" name="検索"></p>
+        <p>ジャンルで検索する？</p>
+        <div class="row">
+            <img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}">
+            <img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}">
+            <img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}">
+            <img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}">
+            <img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}">
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-sm-12">
+                   <div id="map_box"></div>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <h4>---詳細情報---</h4>
+                <div id="side">
+                  <div id="shop_name"></div>
+                  <div id="business_hours"></div>
+                  <div id="shop_item_info"></div>
+                  <div id="url"></div>
+                  <img id="shop_image" src="">
+                </div>
+                <p><img class="ad_img" src="{{ secure_asset('img/ad_c_team.jpg') }}"></p>
+                <p><a href="../post/post.php">投稿ページへのリンク</a></p>
+            </div>
+        </div>
+      </div>
+        
+        
     
     
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
+    
+
     <script>
+      /* global $ */
       //最初に読み込み
       function init(){
         
@@ -105,7 +133,8 @@
               $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
               $('#shop_item_info').text(data['shop_item_info'][0]['information']);
               $('#url').text(data['shop_item_info'][0]['url']);
-              $('#shop_image').attr('src', '/' + data['shop_item_info'][0]['image']);
+              $('#shop_image').attr('src', '{{ secure_asset('/img/') }}' + '/' + data['shop_item_info'][0]['image'] );
+              //$('#shop_image').attr('src', '../img/' + data['shop_item_info'][0]['image']);
               console.log(data['shop_item_info'][0]['image']);
               //commentを生成
               for (var i = 0; i < data['comments'].length; i++) {
