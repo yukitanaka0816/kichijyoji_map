@@ -46,6 +46,11 @@ Route::get('/comments', 'CommentController@index')->name('comments');
 Route::post('/comments', 'CommentController@store')->name('comments.store');
 
 
+//新規地点投稿
+Route::get('/post', 'PostPlaceController@index')->name('post.index');
+
+Route::post('/post', 'PostPlaceController@store')->name('post.store');
+
 
 
 //お問い合わせ画面
