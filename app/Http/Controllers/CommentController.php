@@ -29,11 +29,24 @@ class CommentController extends Controller
     
     //口コミを投稿
     public function store(CommentRequest $request) {
+        //画像投稿処理
+        $filename = '';
+        $image = $request->file('image');
+        if( isset($image) === true ){
+            // 拡張子を取得
+            $ext = $image->guessExtension();
+            // アップロードファイル名は [ランダム文字列20文字].[拡張子]
+            $filename = \Str::random(20) . '.' . $ext;
+            // publicディスク(storage/app/public/)のphotosディレクトリに保存
+            $path = $image->storeAs('photos', $filename, 'public');
+        }
+
         Comment::create([
             'user_id' => \Auth::user()->id,
             'shop_id' => $request->shop_id,
+            'image' => $filename, 
             'comments' => $request->comments,
-            //'status' => $request ->status,
+            'status' => '1',
             ]);
         \Session::flash('success', '口コミを投稿しました');
         return redirect('/comments/' . $request->shop_id);

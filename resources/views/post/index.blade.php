@@ -2,8 +2,11 @@
 
 @section('title', $title)
 
-@section('content')
+@section('style')
+<link rel="stylesheet" href="{{ secure_asset('css/post.css') }}">
+@endsection
 
+@section('content')
 <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{config('api.api_key')}}&callback=init" async defer></script>
 <script type="text/javascript">
     //<![CDATA[
@@ -24,7 +27,7 @@
       };
 
       // getElementById("map")の"map"は、body内の<div id="map">より
-      map = new google.maps.Map(document.getElementById("map"), opts);
+      map = new google.maps.Map(document.getElementById("map_box"), opts);
 
       google.maps.event.addListener(map, 'click', mylistener);
       
@@ -114,34 +117,32 @@
 </script>
 
 <body onload="init()">
-<form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
-    @csrf
-    <div>
-        <label>場所名：<input type="text" name="name" class="name_field" placeholder="入力必須"></label>
-    </div>
-    <div>
-        <label>店舗情報：<input type="text" name="information" class="name_field" placeholder="入力必須"></label>
-    </div>
-    <div>
-        <label>画像：<input type="file" name="image"></label>
-    </div>
-    <table>
-        <tr><th>緯度</th><td id="show_lat"></td></tr>
-        <tr><th>経度</th><td id="show_lng"></td></tr>
-    </table>
-    <div>
-        <input type="hidden" name="status" value="0">
-        <input type="hidden" name="lat" id="lat" value="">
-        <input type="hidden" name="lng" id="lng" value="">
-        <input type="submit" value="スポット登録">
-    </div>
-</form>
+  <div class="container">
+        <div class="col-lg-7 col-sm-12"></div>
+            <div id="post">
+            <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
+              @csrf
+              <p>場所名：<input type="text" name="name" class="name_field" placeholder="20文字以内・入力必須"></p>
+              <p>店舗情報：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・入力必須"></p>
+              <p>画像：<input type="file" name="image"></p>
+            </div>
+            <table>
+                <tr><th>緯度</th><td id="show_lat"></td></tr>
+                <tr><th>経度</th><td id="show_lng"></td></tr>
+            </table>
+              <div>
+                  <input type="hidden" name="status" value="0">
+                  <input type="hidden" name="lat" id="lat" value="">
+                  <input type="hidden" name="lng" id="lng" value="">
+                  <input type="submit" value="スポット登録">
+              </div>
+            </form>
     <div>
         <p>検索or地図をクリックして場所を指定</p>
         <label>住所：<input type="text" id="address" placeholder="場所名や住所"></label>
         <button id="search">検索</button>
         <p id="search_result"></p>
     </div>
-    <div id="map" style="height:560px"></div>
+    <div id="map_box"></div>
 </body>
 @endsection
