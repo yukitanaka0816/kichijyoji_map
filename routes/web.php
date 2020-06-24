@@ -34,7 +34,7 @@ Route::get('/wants', 'WantController@index')->name('wants');
 
 Route::post('/wants/{shop_id}', 'WantController@show')->name('wants.show');
 
-Route::delete('/wants', 'WantController@destroy')->name('wants.destroy');
+Route::delete('/wants/{id}', 'WantController@destroy')->name('wants.destroy');
 
 Route::patch('/wants', 'WantController@update')->name('wants.update');
 
