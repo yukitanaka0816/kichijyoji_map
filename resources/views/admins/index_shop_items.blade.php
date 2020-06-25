@@ -42,7 +42,7 @@
                         @csrf
                         @method('PATCH')
                         <td>
-                            <textarea name="update_business_hours" class="business_hours_field" placeholder="営業時間を入力"></textarea>
+                            <textarea name="update_business_hours" class="business_hours_field" placeholder="営業時間を入力">{{ $shop_item->business_hours }}</textarea>
                             <input type="hidden" name="status" value="{{ $shop_item->status }}">
                             <input type="hidden" name="url" value="{{ $shop_item->url }}">
                             <input type="submit" value="変更">
@@ -53,7 +53,7 @@
                         @csrf
                         @method('PATCH')
                         <td>
-                            <textarea name="update_url" class="url_field" placeholder="URLを入力"></textarea>
+                            <textarea name="update_url" class="url_field" placeholder="URLを入力">{{ $shop_item->url }}</textarea>
                             <input type="hidden" name="status" value="{{ $shop_item->status }}">
                             <input type="hidden" name="business_hours" value="{{ $shop_item->business_hours }}">
                             <input type="submit" value="変更">
