@@ -72,7 +72,7 @@
                     </ul>
                 </div>
                 @empty
-                <div>行きたいところを追加しよう</div>
+                <div>行きたいところを追加してみよう！</div>
                 @endforelse
             </div>
         </div>

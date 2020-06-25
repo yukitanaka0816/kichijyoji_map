@@ -35,7 +35,7 @@
             @csrf
             <input type="hidden" name="shop_id" value="{{$shop_item->id}}">
             <p>お名前：{{Auth::user()->name}}</p>
-            <p>口コミ：<input type="text" id="comment" name="comments" class="comment_field" placeholder="500文字以内で入力"></p>
+            <p>口コミ：<textarea name="comments" cols="30" rows="5" id="comment" placeholder="500文字以内で入力"></textarea></p>
             <p>画像 (内装・外装・商品・景色など)：<input type="file" name="image"></p>
             <input type="submit" value="口コミを投稿する">
         </form>
