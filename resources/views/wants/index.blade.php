@@ -7,7 +7,6 @@
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
     <div class="row">
             <div class="col-lg-7 col-sm-12">
                 <h4>行きたいところリスト</h4>
@@ -75,7 +74,7 @@
                 <div>行きたいところを追加しよう</div>
                 @endforelse
             </div>
-        </div>
+    </div>
         
     <script>
       function init(){
