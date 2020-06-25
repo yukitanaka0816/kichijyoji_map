@@ -62,12 +62,11 @@
                 @forelse($wants as $want)
                 <div>
                     <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-                    <p></p><img class="info_img" src="{{ $want->shop->image }}"></p>
+                    <p></p><img class="info_img" src="{{ secure_asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
                     <ul class="info_list">
-                        <li>営業時間：</li>
-                        <li>駅からの所要時間：</li>
-                        <li>予算：</li>
-                        <li>問い合わせ先：</li>
+                        <li>営業時間：{{ $want->shop->business_hours }}</li>
+                        <li>詳細情報：{{ $want->shop->information }}</li>
+                        <li>ウェブサイト：{{ $want->shop->url }}</li>
                         <li><a href="">口コミ一覧</a></li>
                     </ul>
                 </div>
