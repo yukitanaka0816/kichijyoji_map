@@ -19,9 +19,14 @@ class WantController extends Controller
     public function index(){
         // $wants = \Auth::user()->user_wants;
         $wants = Wants::order()->get();
+        
+        //
+        $order = [1=>'A', 2=>'B', 3=>'C', 4=>'D', 5=>'E', 6=>'F', 7=>'G', 8=>'H'];
+        
         return view('wants.index', [
             'title' => 'ルート作成画面',
             'wants' => $wants,
+            'order' => $order,
         ]);
     }
     
