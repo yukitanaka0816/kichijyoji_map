@@ -3,6 +3,9 @@
 /*    margin: 0px;*/
 /*    padding: 0px;*/
 /*}*/
+.row {
+    padding: 15px;
+}
 .footer {
     background-color: #75daad;
     color: #216353;
