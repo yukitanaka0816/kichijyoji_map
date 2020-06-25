@@ -1,0 +1,8 @@
+.container {
+    color: #216353;
+    padding: 15px;
+}
+#map_box {
+    width: 450px;
+    height: 400px;
+}

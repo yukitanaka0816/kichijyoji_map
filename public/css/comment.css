@@ -12,3 +12,6 @@ body {
     width: 300px;
     height: 190px;
 }
+.row {
+    padding: 15px;
+}

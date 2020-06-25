@@ -19,7 +19,7 @@ Route::get('/', function () {
 //お店選択画面
 Route::get('/shop_items', 'ShopItemController@index')->name('shop_items');
 
-Route::post('/shop_items/{category_id}', 'ShopItemController@category')->name('shop_items.category');
+Route::get('/shop_items/{category_id}', 'ShopItemController@category')->name('shop_items.category');
 
 Route::get('/shop_items/show/{shop_id}', 'ShopItemController@show')->name('shop_items.show');
 
@@ -73,8 +73,16 @@ Route::get('/admin/users', 'AdminController@index_users');
 // ユーザー削除
 Route::delete('/admin/users/{id}', 'AdminController@destroy_user');
 
+// 営業時間
+Route::patch('admin/shop_items/business_hours/{id}', 'AdminController@update_business_hours');
+
+// URL
+Route::patch('admin/shop_items/url/{id}', 'AdminController@update_url');
+
 // 公開ステータス
-Route::patch('/admin/shop_items/{id}', 'AdminController@update_status');
+Route::patch('/admin/shop_items/status/{id}', 'AdminController@update_status');
+
+
 
 //ログイン
 Auth::routes();

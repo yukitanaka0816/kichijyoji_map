@@ -11,14 +11,19 @@
             <input type="submit" value="ログアウト">
         </form>
     </div>
-    <a href="{{ url('/admin/inquiries') }}">お問い合わせ一覧ページ</a>
-    <a href="{{ url('/admin/users') }}">ユーザー一覧ページ</a>
+    <ul>
+        <li><a href="{{ url('/admin/inquiries') }}">お問い合わせ一覧ページ</a></li>
+        <li><a href="{{ url('/admin/users') }}">ユーザー一覧ページ</a></li>
+    </ul>
     <table>
         <tr>
             <th>店舗名</th>
             <th>写真</th>
+            <th>店舗情報</th>
+            <th>営業時間</th>
+            <th>URL</th>
             <th>公開フラグ</th>
-            <th>登録日</th>
+            <th>更新日時</th>
         </tr>
         <ul>
             @forelse($shop_items as $shop_item)
@@ -29,7 +34,33 @@
                     <td>
                         {{ $shop_item->image }}
                     </td>
-                    <form method="post" action="{{ url('/admin/shop_items/'. $shop_item->id) }}">
+                    <td>
+                        {{ $shop_item->information }}
+                    </td>
+                    
+                    <form method="post" action="{{ url('/admin/shop_items/business_hours/'. $shop_item->id) }}">
+                        @csrf
+                        @method('PATCH')
+                        <td>
+                            <textarea name="update_business_hours" class="business_hours_field" placeholder="営業時間を入力"></textarea>
+                            <input type="hidden" name="status" value="{{ $shop_item->status }}">
+                            <input type="hidden" name="url" value="{{ $shop_item->url }}">
+                            <input type="submit" value="変更">
+                        </td>
+                    </form>
+                    
+                    <form method="post" action="{{ url('/admin/shop_items/url/'. $shop_item->id) }}">
+                        @csrf
+                        @method('PATCH')
+                        <td>
+                            <textarea name="update_url" class="url_field" placeholder="URLを入力"></textarea>
+                            <input type="hidden" name="status" value="{{ $shop_item->status }}">
+                            <input type="hidden" name="business_hours" value="{{ $shop_item->business_hours }}">
+                            <input type="submit" value="変更">
+                        </td>
+                    </form>
+                    
+                    <form method="post" action="{{ url('/admin/shop_items/status/'. $shop_item->id) }}">
                         @csrf
                         @method('PATCH')
                         @if( $shop_item->status === 1)
@@ -46,8 +77,9 @@
                         </td>
                         @endif
                     </form>
+                    
                     <td>
-                        ({{ $shop_item->created_at }})
+                        ({{ $shop_item->updated_at }})
                     </td>
                 </tr>
             @empty

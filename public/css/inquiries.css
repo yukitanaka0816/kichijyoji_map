@@ -1,0 +1,32 @@
+.inquiries {
+    color: #216353;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    text-align: center;
+    color: #216353;
+}
+.content_field {
+    width: 450px;
+    height: 200px;
+}
+.name_field {
+    width: 230px;
+}
+.email_field {
+    width: 230px;
+}
+.submit {
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #f35c62;
+        border-style: none;
+        color: #ffffff;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+}
+.submit:hover {
+    background-color: #f56e73;
+}
+
