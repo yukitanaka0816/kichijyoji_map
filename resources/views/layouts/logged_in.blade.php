@@ -13,7 +13,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ route('shop_items') }}" class="nav-link"><img class="nav_icon" src="{{ asset('img/nav_icon.png') }}"> ホーム</a></li>
                     <li class="nav-item"><a href="{{ route('wants') }}" class="nav-link"><img class="nav_icon" src="{{ asset('img/nav_icon.png') }}"> ルート</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link"><img class="nav_icon" src="{{ asset('img/nav_icon.png') }}"> 投稿  </a></li>
+                    <li class="nav-item"><a href="{{ route('post.index') }}" class="nav-link"><img class="nav_icon" src="{{ asset('img/nav_icon.png') }}"> 投稿  </a></li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
