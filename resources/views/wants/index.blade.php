@@ -9,72 +9,72 @@
 @section('content')
     <h1>{{ $title }}</h1>
     <div class="row">
-            <div class="col-lg-7 col-sm-12">
-                <h4>行きたいところリスト</h4>
-                <table>
-                    <tr>
-                        <th>場所名</th>
-                        <th>順序</th>
-                    </tr>
-                    <div class="wants">
-                    @forelse($wants as $want)
-                    
-                        <tr>
-                            <td>{{ $want->shop->name}}</td>
-                            <td>
-                                <select name="order[]" form="order_form">
-                                  @for($i = 1; $i <= count($wants); $i++)
-                                    <option value="{{ $i }}" @if( $want->order === $i ) selected @endif >{{ $order[$i] }}</option>
-                                  @endfor
-                                </select>
-                            </td>
-                            <form method="post" action="{{ route('wants.destroy', $want) }}">
-                                @csrf
-                                @method('delete')
-                                <td><input type="submit" value="削除"></td>
-                                <input type="hidden" value="{{ $want->id }}">
-                            </form>
-                        </tr>
-                    @empty
-                        <tr>行きたいところを追加していません！</tr>
-                    @endforelse
-                    </div>
-                </table>
-                <form method="post" id="order_form" action="{{ route('wants.update') }}">
-                    @csrf
-                    @method('patch')
-                    <p><input type="submit" value="順序を変更する"></p>
-                </form>
+      <div class="col-lg-7 col-sm-12">
+          <h4>行きたいところリスト</h4>
+          <table>
+              <tr>
+                  <th>場所名</th>
+                  <th>順序</th>
+              </tr>
+              <div class="wants">
+              @forelse($wants as $want)
+              
+                  <tr>
+                      <td>{{ $want->shop->name}}</td>
+                      <td>
+                          <select name="order[]" form="order_form">
+                            @for($i = 1; $i <= count($wants); $i++)
+                              <option value="{{ $i }}" @if( $want->order === $i ) selected @endif >{{ $order[$i] }}</option>
+                            @endfor
+                          </select>
+                      </td>
+                      <form method="post" action="{{ route('wants.destroy', $want) }}">
+                          @csrf
+                          @method('delete')
+                          <td><input type="submit" value="削除"></td>
+                          <input type="hidden" value="{{ $want->id }}">
+                      </form>
+                  </tr>
+              @empty
+                  <tr>行きたいところを追加していません！</tr>
+              @endforelse
+              </div>
+          </table>
+          <form method="post" id="order_form" action="{{ route('wants.update') }}">
+              @csrf
+              @method('patch')
+              <p><input type="submit" value="順序を変更する"></p>
+          </form>
 {{--            
-                <!--<p>現在選択されている順序</p>-->
-                <!--<ul id="root_list">-->
-                <!--    <li>井の頭公園</li>-->
-                <!--    <li>ハンモックカフェ</li>-->
-                <!--    <li>ジブリ美術館</li>-->
-                <!--</ul>-->
-                <!--<p><input type="submit" value="ルートを作成する"></p>-->
+          <!--<p>現在選択されている順序</p>-->
+          <!--<ul id="root_list">-->
+          <!--    <li>井の頭公園</li>-->
+          <!--    <li>ハンモックカフェ</li>-->
+          <!--    <li>ジブリ美術館</li>-->
+          <!--</ul>-->
+          <!--<p><input type="submit" value="ルートを作成する"></p>-->
 --}}
-                <div id="map_box"></div>
-                
-            </div>
-            <div class="col-lg-5 col-sm-12">
-                <h4>---詳細情報---</h4>
-                @forelse($wants as $want)
-                <div>
-                    <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-                    <p></p><img class="info_img" src="{{ secure_asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
-                    <ul class="info_list">
-                        <li>営業時間：{{ $want->shop->business_hours }}</li>
-                        <li>詳細情報：{{ $want->shop->information }}</li>
-                        <li>ウェブサイト：{{ $want->shop->url }}</li>
-                        <li><a href="">口コミ一覧</a></li>
-                    </ul>
-                </div>
-                @empty
-                <div>行きたいところを追加しよう</div>
-                @endforelse
-            </div>
-        </div>
+          <div id="map_box"></div>
+          
+      </div>
+      <div class="col-lg-5 col-sm-12">
+          <h4>---詳細情報---</h4>
+          @forelse($wants as $want)
+          <div>
+              <label class="info_spot_name">【{{ $want->shop->name }}】</label>
+              <p></p><img class="info_img" src="{{ secure_asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
+              <ul class="info_list">
+                  <li>営業時間：{{ $want->shop->business_hours }}</li>
+                  <li>詳細情報：{{ $want->shop->information }}</li>
+                  <li>ウェブサイト：{{ $want->shop->url }}</li>
+                  <li><a href="">口コミ一覧</a></li>
+              </ul>
+          </div>
+          @empty
+          <div>行きたいところを追加しよう</div>
+          @endforelse
+      </div>
+    </div>
         
     <script>
       function init(){
@@ -113,6 +113,16 @@
               map: map,
               animation: google.maps.Animation.DROP
             });
+            
+          var infoWindow = new google.maps.InfoWindow({
+            content: place_list[0]['name']
+          });
+          
+          //マーカーにイベントを追加
+          marker.addListener('click', function(){
+            infoWindow.open(map,marker);
+          });
+            
         }else if(place_list.length === 2){
           var request = {
             origin: new google.maps.LatLng(place_list[0]["lat"],place_list[0]["lng"]),
