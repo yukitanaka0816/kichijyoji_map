@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostPlaceRequest;
 use Illuminate\Support\Facades\Auth;
+use DB;
 use App\ShopItems;
-
+use App\Tag;
+use App\Http\Requests\TagRequest;
 
 class PostPlaceController extends Controller
 {
@@ -25,7 +27,8 @@ class PostPlaceController extends Controller
     }
     
     //新規地点の投稿
-    public function store(PostPlaceRequest $request) {
+    public function store(PostPlaceRequest $request, TagRequest $check) {
+        
         //画像投稿処理
         $filename = '';
         $image = $request->file('image');
@@ -38,19 +41,31 @@ class PostPlaceController extends Controller
             $path = $image->storeAs('photos', $filename, 'public');
         }
 
-        ShopItems::create([
-          'user_id' => \Auth::user()->id,
-          'business_hours' => '9:00-18:00',
-          'name' => $request->name,
-          'information' => $request->information,
-          'image' => $filename, 
-          'status' => '0',
-          'lat' => $request->lat,
-          'lng' => $request->lng,
-          'url' => 'https://',
+        //shop_itemsテーブルへの挿入
+        $id = DB::table('shop_items')->insertGetId([
+            'user_id' => \Auth::user()->id,
+            'business_hours' => '9:00-18:00',
+            'name' => $request->name,
+            'information' => $request->information,
+            'image' => $filename, 
+            'status' => '0',
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+            'url' => 'https://',
         ]);
         
+        //選択されたカテゴリーをtagsテーブルへ挿入
+        $categories = $check->input('categories');
+        //dd($categories);
+        //dd($id);
+        
+        foreach($categories as $category){
+            Tag::create([
+                'shop_id' => $id,
+                'category_id' => $category,
+            ]);
+        }
         \Session::flash('success', '投稿を追加しました');
         return redirect('/post');
-      }
+    }
 }
