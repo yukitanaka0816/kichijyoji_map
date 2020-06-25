@@ -32,9 +32,10 @@ class ShopItemController extends Controller
         //店舗情報をすべて取得
         $shop_items = DB::table('tags')
                             ->join('shop_items',function($join){
-                                $join->on( 'tags.shop_id', '=', 'shop_items.id',)
-                                     ->groupBy('tags.shop_id');
+                                $join->on( 'tags.shop_id', '=', 'shop_items.id');
+                                     
                             })
+                            ->groupBy('shop_id')
                             ->get();
         //view読み込み
         return view('shop_items.index', [
