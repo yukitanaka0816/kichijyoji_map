@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('style')
-<link rel="stylesheet" href="{{ secure_asset('css/inquiries.css') }}">
+<link rel="stylesheet" href="{{ asset('css/inquiries.css') }}">
 @endsection
 
 @section('content')
