@@ -125,12 +125,20 @@
               <p>場所名：<input type="text" name="name" class="name_field" placeholder="20文字以内・入力必須"></p>
               <p>店舗情報：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・入力必須"></p>
               <p>画像：<input type="file" name="image"></p>
+              <p>カテゴリー（複数選択可）：
+                <input type="checkbox" name="categories[]" value="1">食べる
+                <input type="checkbox" name="categories[]" value="2">祝う
+                <input type="checkbox" name="categories[]" value="3">買う
+                <input type="checkbox" name="categories[]" value="4">遊ぶ
+                <input type="checkbox" name="categories[]" value="5">休む
+              </p>
             </div>
             <table>
                 <tr><th>緯度</th><td id="show_lat"></td></tr>
                 <tr><th>経度</th><td id="show_lng"></td></tr>
             </table>
               <div>
+                  {{--<input type="hidden" name="shop_id" value="{{$shop_item->id}}">--}}
                   <input type="hidden" name="status" value="0">
                   <input type="hidden" name="lat" id="lat" value="">
                   <input type="hidden" name="lng" id="lng" value="">
