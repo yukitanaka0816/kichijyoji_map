@@ -12,11 +12,11 @@
         <p>キーワードで検索する？<input type="text" name="keyword"><input type="submit" name="検索"></p>
         <p>ジャンルで検索する？</p>
         <div class="row">
-            <img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}">
+            <a href="{{ url('/shop_items/1') }}"><img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}"></a>
+            <a href="{{ url('/shop_items/2') }}"><img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}"></a>
+            <a href="{{ url('/shop_items/3') }}"><img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/4') }}"><img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/5') }}"><img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}"></a>
         </div>
         <div class="row">
             <div class="col-lg-7 col-sm-12">
