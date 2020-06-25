@@ -70,7 +70,7 @@ class ShopItemController extends Controller
             Wants::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
-                'order' => $wants.lengt,
+                'order' => $wants.lengt + 1,
                 ]);
         } else {
             \Session::flash('error', '行きたい！は8個までです。');
