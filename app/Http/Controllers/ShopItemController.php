@@ -30,7 +30,7 @@ class ShopItemController extends Controller
         $title = 'お店選択画面（トップページ）';
         
         //店舗情報をすべて取得
-        $shop_items = ShopItems::all();
+        $shop_items = ShopItems::where('status', 1)->get();
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
