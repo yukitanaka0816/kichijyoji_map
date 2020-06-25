@@ -61,7 +61,7 @@
           map_box,
           {
             center: kichijoji,
-            zoom: 17,
+            zoom: 14,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
@@ -133,8 +133,9 @@
               $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
               $('#shop_item_info').text(data['shop_item_info'][0]['information']);
               $('#url').text(data['shop_item_info'][0]['url']);
-              $('#shop_image').attr('src', '{{ secure_asset('/img/') }}' + '/' + data['shop_item_info'][0]['image'] );
+              $('#shop_image').attr('src', '{{ secure_asset('/img/kichijoji_sopot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
               //$('#shop_image').attr('src', '../img/' + data['shop_item_info'][0]['image']);
+              console.log(data);
               console.log(data['shop_item_info'][0]['image']);
               //commentを生成
               for (var i = 0; i < data['comments'].length; i++) {
