@@ -43,3 +43,10 @@ body {
 .ad_img {
     width: 40%;
 }
+
+
+
+#shop_image {
+    width: 300px;
+    height: 300px;
+}
