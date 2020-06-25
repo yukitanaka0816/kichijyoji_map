@@ -11,8 +11,10 @@ class ShopItems extends Model
 {
     protected $fillable = ['user_id', 'name', 'information', 'business_hours', 'image', 'lat', 'lng', 'status', 'url'];
     
-    public function tag() {
+
+    public function tags(){
         return $this->hasMany('App\Tag');
     }
-
+    
+    
 }
