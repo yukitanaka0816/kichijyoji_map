@@ -64,11 +64,17 @@ class ShopItemController extends Controller
         
         $user_id = \Auth::user()->id;
         
-        Wants::create([
-            'user_id' => $user_id,
-            'shop_id' => $shop_id,
-            'order' => 1,
-            ]);
+        $wants = \Auth::user()->user_wants()->get('shop_id');
+        
+        if ($wants.length < 9) {
+            Wants::create([
+                'user_id' => $user_id,
+                'shop_id' => $shop_id,
+                'order' => $wants.lengt,
+                ]);
+        } else {
+            \Session::flash('error', '行きたい！は8個までです。');
+        }
         
     }
     
