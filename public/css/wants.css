@@ -40,6 +40,10 @@
 body {
     color: #216353;
 }
+.row {
+    padding-top: 20px;
+    padding-left: 40px;
+}
 table {
     border-collapse: collapse;
     text-align: center;
@@ -55,6 +59,9 @@ table th {
 }
 #root_list {
     list-style-type: decimal;
+}
+#map_box {
+    width: 80%;
 }
 .info_spot_name {
     font-weight: bold; 

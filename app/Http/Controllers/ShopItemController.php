@@ -8,6 +8,8 @@ use App\ShopItems;
 use App\Wants;
 use App\Comment;
 use App\Users;
+use App\Tag;
+use DB;
 
 class ShopItemController extends Controller
 {
@@ -29,7 +31,6 @@ class ShopItemController extends Controller
         
         //店舗情報をすべて取得
         $shop_items = ShopItems::all();
-        
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
@@ -71,7 +72,23 @@ class ShopItemController extends Controller
         
     }
     
+    public function category($id){
+        $title = 'お店選択画面（トップページ）';
+        
+        //カテゴリー店舗情報を取得
+        $shop_items = DB::table('shop_items')
+                            ->join('tags',function($join) use ($id){
+                                $join->on('shop_items.id', '=', 'tags.shop_id')
+                                     ->where('tags.category_id', '=', $id);
+                            })
+                            ->get();
+        //view読み込み
+        return view('shop_items.index', [
+            'title' => $title,
+            'shop_items' => $shop_items,
+            ]);
     
+    }
     
     public function sample(){
         

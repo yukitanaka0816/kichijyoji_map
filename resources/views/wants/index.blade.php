@@ -7,7 +7,6 @@
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
     <div class="row">
       <div class="col-lg-7 col-sm-12">
           <h4>行きたいところリスト</h4>
@@ -54,26 +53,26 @@
           <!--</ul>-->
           <!--<p><input type="submit" value="ルートを作成する"></p>-->
 --}}
-          <div id="map_box"></div>
-          
-      </div>
-      <div class="col-lg-5 col-sm-12">
-          <h4>---詳細情報---</h4>
-          @forelse($wants as $want)
-          <div>
-              <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-              <p></p><img class="info_img" src="{{ secure_asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
-              <ul class="info_list">
-                  <li>営業時間：{{ $want->shop->business_hours }}</li>
-                  <li>詳細情報：{{ $want->shop->information }}</li>
-                  <li>ウェブサイト：{{ $want->shop->url }}</li>
-                  <li><a href="">口コミ一覧</a></li>
-              </ul>
-          </div>
-          @empty
-          <div>行きたいところを追加しよう</div>
-          @endforelse
-      </div>
+                <div id="map_box"></div>
+                
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <h4>---詳細情報---</h4>
+                @forelse($wants as $want)
+                <div>
+                    <label class="info_spot_name">【{{ $want->shop->name }}】</label>
+                    <p></p><img class="info_img" src="{{ secure_asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
+                    <ul class="info_list">
+                        <li>営業時間：{{ $want->shop->business_hours }}</li>
+                        <li>詳細情報：{{ $want->shop->information }}</li>
+                        <li>ウェブサイト：{{ $want->shop->url }}</li>
+                        <li><a href="">口コミ一覧</a></li>
+                    </ul>
+                </div>
+                @empty
+                <div>行きたいところを追加しよう</div>
+                @endforelse
+            </div>
     </div>
         
     <script>
