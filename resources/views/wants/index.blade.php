@@ -7,9 +7,30 @@
 @section('title', $title)
 
 @section('content')
-    <h1>{{ $title }}</h1>
     <div class="row">
-            <div class="col-lg-7 col-sm-12">
+            <div class="col-lg-4 col-sm-12" id="detail_box">
+                <h4>---詳細情報---</h4>
+                @forelse($wants as $want)
+                <label class="info_spot_name">【{{ $want->shop->name }}】</label>
+                <div class="row">
+                    <div class="col-6"><img class="info_img" src="{{ asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></div>
+                    <div class="col-6">
+                      <ul class="info_list">
+                          <li>営業時間：{{ $want->shop->business_hours }}</li>
+                          <li>詳細情報：{{ $want->shop->information }}</li>
+                          <li>ウェブサイト：<a href="{{ $want->shop->url }}">{{ $want->shop->url }}</a></li>
+                          <li><a href="{{ route('comments', $want->shop->id )}}">口コミ一覧</a></li>
+                      </ul>
+                    </div>
+                </div>
+                @empty
+                <div>行きたいところを追加しよう</div>
+                @endforelse
+            </div>
+            
+            <div id="map_box" class="col-lg-4 col-sm-12"></div>
+            
+            <div class="col-lg-4 col-sm-12">
                 <h4>行きたいところリスト</h4>
                 <table>
                     <tr>
@@ -45,36 +66,6 @@
                     @method('patch')
                     <p><input type="submit" value="順序を変更する"></p>
                 </form>
-{{--            
-                <!--<p>現在選択されている順序</p>-->
-                <!--<ul id="root_list">-->
-                <!--    <li>井の頭公園</li>-->
-                <!--    <li>ハンモックカフェ</li>-->
-                <!--    <li>ジブリ美術館</li>-->
-                <!--</ul>-->
-                <!--<p><input type="submit" value="ルートを作成する"></p>-->
---}}
-                <div id="map_box"></div>
-                
-            </div>
-            <div class="col-lg-5 col-sm-12" id="detail_box">
-                <h4>---詳細情報---</h4>
-                @forelse($wants as $want)
-                <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-                <div class="row">
-                    <div class="col-6"><img class="info_img" src="{{ asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></div>
-                    <div class="col-6">
-                      <ul class="info_list">
-                          <li>営業時間：{{ $want->shop->business_hours }}</li>
-                          <li>詳細情報：{{ $want->shop->information }}</li>
-                          <li>ウェブサイト：<a href="{{ $want->shop->url }}">{{ $want->shop->url }}</a></li>
-                          <li><a href="{{ route('comments', $want->shop->id )}}">口コミ一覧</a></li>
-                      </ul>
-                    </div>
-                </div>
-                @empty
-                <div>行きたいところを追加しよう</div>
-                @endforelse
             </div>
         </div>
         

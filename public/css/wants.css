@@ -90,3 +90,6 @@ table th {
     height: 600px;
     overflow: scroll;
 }
+table {
+    margin-right: -10px;
+}
