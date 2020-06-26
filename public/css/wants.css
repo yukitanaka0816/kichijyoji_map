@@ -1,8 +1,18 @@
-
+#map_box {
+    width: 650px;
+    height: 600px;
+}
 /*.container {*/
 /*    margin: 0px;*/
 /*    padding: 0px;*/
 /*}*/
+#map_box {
+    width: 650px;
+    height: 600px;
+}
+.row {
+    padding: 15px;
+}
 .footer {
     background-color: #75daad;
     color: #216353;
@@ -40,6 +50,10 @@
 body {
     color: #216353;
 }
+.row {
+    padding-top: 20px;
+    padding-left: 40px;
+}
 table {
     border-collapse: collapse;
     text-align: center;
@@ -56,11 +70,14 @@ table th {
 #root_list {
     list-style-type: decimal;
 }
+#map_box {
+    width: 80%;
+}
 .info_spot_name {
     font-weight: bold; 
 }
 .info_img {
-    width: 40%;
+    width: 100%;
 }
 .info_list {
     list-style-type: none;
@@ -68,4 +85,8 @@ table th {
 }
 .ad_img {
     width: 40%;
+}
+#detail_box {
+    height: 600px;
+    overflow: scroll;
 }

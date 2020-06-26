@@ -1,7 +1,7 @@
 @extends('layouts.logged_in')
 
 @section('style')
-<link rel="stylesheet" href="{{ secure_asset('css/wants.css') }}">
+<link rel="stylesheet" href="{{ asset('css/wants.css') }}">
 @endsection
 
 @section('title', $title)
@@ -57,19 +57,20 @@
                 <div id="map_box"></div>
                 
             </div>
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-5 col-sm-12" id="detail_box">
                 <h4>---詳細情報---</h4>
                 @forelse($wants as $want)
-                <div>
-                    <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-                    <p></p><img class="info_img" src="{{ $want->shop->image }}"></p>
-                    <ul class="info_list">
-                        <li>営業時間：</li>
-                        <li>駅からの所要時間：</li>
-                        <li>予算：</li>
-                        <li>問い合わせ先：</li>
-                        <li><a href="">口コミ一覧</a></li>
-                    </ul>
+                <label class="info_spot_name">【{{ $want->shop->name }}】</label>
+                <div class="row">
+                    <div class="col-6"><img class="info_img" src="{{ asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></div>
+                    <div class="col-6">
+                      <ul class="info_list">
+                          <li>営業時間：{{ $want->shop->business_hours }}</li>
+                          <li>詳細情報：{{ $want->shop->information }}</li>
+                          <li>ウェブサイト：{{ $want->shop->url }}</li>
+                          <li><a href="{{ route('comments', $want->shop->id )}}">口コミ一覧</a></li>
+                      </ul>
+                    </div>
                 </div>
                 @empty
                 <div>行きたいところを追加しよう</div>

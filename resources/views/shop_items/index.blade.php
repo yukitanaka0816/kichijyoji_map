@@ -1,7 +1,7 @@
 @extends('layouts.logged_in')
 
 @section('style')
-<link rel="stylesheet" href="{{ secure_asset('css/top.css') }}">
+<link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
 
 @section('title', $title)
@@ -12,11 +12,11 @@
         <p>キーワードで検索する？<input type="text" name="keyword"><input type="submit" name="検索"></p>
         <p>ジャンルで検索する？</p>
         <div class="row">
-            <img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}">
-            <img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}">
+            <a href="{{ url('/shop_items/1') }}"><img class="cat_img" src="{{ asset('img/category_eat.jpg') }}"></a>
+            <a href="{{ url('/shop_items/2') }}"><img class="cat_img" src="{{ asset('img/category_celebrate.jpg') }}"></a>
+            <a href="{{ url('/shop_items/3') }}"><img class="cat_img" src="{{ asset('img/category_buy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/4') }}"><img class="cat_img" src="{{ asset('img/category_enjoy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/5') }}"><img class="cat_img" src="{{ asset('img/category_rest.jpg') }}"></a>
         </div>
         <div class="row">
             <div class="col-lg-7 col-sm-12">
@@ -28,10 +28,10 @@
                   <div id="shop_name"></div>
                   <div id="business_hours"></div>
                   <div id="shop_item_info"></div>
-                  <div id="url"></div>
-                  <img id="shop_image" src="">
+                  <div><a id="url" href=""></a></div>
+                  <div><img id="shop_image" src="{{ asset('img/details_box.png') }}"></div>
                 </div>
-                <p><img class="ad_img" src="{{ secure_asset('img/ad_c_team.jpg') }}"></p>
+                <p><img class="ad_img" src="{{ asset('img/ad_c_team.jpg') }}"></p>
                 <p><a href="../post/post.php">投稿ページへのリンク</a></p>
             </div>
         </div>
@@ -43,6 +43,7 @@
     
 
     <script>
+
       /* global $ */
       //最初に読み込み
       function init(){
@@ -61,7 +62,7 @@
           map_box,
           {
             center: kichijoji,
-            zoom: 17,
+            zoom: 14,
             disableDefaultUI: true,
             zoomControl: true,
             clickableIcons: false,
@@ -74,14 +75,96 @@
           //id,nameを定義
           var shop_name = shop_items[i]["name"];
           var shop_id = shop_items[i]["id"];
+          var shop_category = shop_items[i]['category_id'];
           
           //マーカーを立てる
-          let marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"])
+          if(shop_category === 1){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/eat_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 2){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/celebrate_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 3){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/buy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 4){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/enjoy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+            content: infoContent(shop_items[i])
+          });
+
+          
+          //マーカーにイベントを追加
+          marker.addListener('click', function(){
+            infoWindow.open(map,marker);
           });
           
-
+          //マーカーを配列にpushして代入
+          markers.push(marker);
+           
+          }if(shop_category === 5){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/rest_small.png',
+            });
+          
           let infoWindow = new google.maps.InfoWindow({
             content: infoContent(shop_items[i])
           });
@@ -94,6 +177,7 @@
           
           //マーカーを配列にpushして代入
           markers.push(marker);
+           }
         }
 
         
@@ -123,7 +207,7 @@
             //ajaxでリクエストを送信
             $.ajax({
               url: '/shop_items/show/' + $(this).data('shop_item_id'),
-              type: 'POST',
+              type: 'GET',
               data: {'shop_id': $(this).data('shop_item_id')},
             })
             //ajaxリクエスト成功時の処理
@@ -133,9 +217,8 @@
               $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
               $('#shop_item_info').text(data['shop_item_info'][0]['information']);
               $('#url').text(data['shop_item_info'][0]['url']);
-              $('#shop_image').attr('src', '{{ secure_asset('/img/') }}' + '/' + data['shop_item_info'][0]['image'] );
-              //$('#shop_image').attr('src', '../img/' + data['shop_item_info'][0]['image']);
-              console.log(data['shop_item_info'][0]['image']);
+              $('#shop_image').attr('src', '{{ asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
+              $('#url').attr('href', data['shop_item_info'][0]['url']);
               //commentを生成
               for (var i = 0; i < data['comments'].length; i++) {
                 //divboxを生成
@@ -154,7 +237,7 @@
             });
           });
           
-          add_button.innerHTML = 'ルートに追加';
+          add_button.innerHTML = '行きたい！';
           add_button.className = 'add_wants';
           add_button.dataset.shop_item_id = shop_item['id'];
           
@@ -179,7 +262,7 @@
           });
           
           
-          comment_button.innerHTML = 'コメントを追加';
+          comment_button.innerHTML = 'コメント';
           comment_button.className = 'add_comment';
           comment_button.dataset.shop_item_id = shop_item['id'];
           
