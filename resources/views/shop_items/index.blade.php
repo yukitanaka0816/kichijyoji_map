@@ -8,16 +8,25 @@
 
 @section('content')
     <div class="article">
-        <h5>行きたいスポットを検索できます♪</h5>
-        <p>キーワードで検索する？<input type="text" name="keyword"><input type="submit" name="検索"></p>
-        <p>ジャンルで検索する？</p>
-        <div class="row">
-            <a href="{{ url('/shop_items/1') }}"><img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}"></a>
-            <a href="{{ url('/shop_items/2') }}"><img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}"></a>
-            <a href="{{ url('/shop_items/3') }}"><img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}"></a>
-            <a href="{{ url('/shop_items/4') }}"><img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}"></a>
-            <a href="{{ url('/shop_items/5') }}"><img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}"></a>
+        <h5>行きたいスポットをジャンルから検索できます♪</h5>
+        <div class="row" id="top-row">
+          <div class="col-2">
+            <a href="{{ url('/shop_items/1') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_eat.jpg') }}"></a>
+          </div>
+          <div class="col-2">
+            <a href="{{ url('/shop_items/2') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_celebrate.jpg') }}"></a>
+          </div>
+          <div class="col-2">
+            <a href="{{ url('/shop_items/3') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_buy.jpg') }}"></a>
+          </div>
+          <div class="col-2">
+            <a href="{{ url('/shop_items/4') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_enjoy.jpg') }}"></a>
+          </div>
+          <div class="col-2">
+            <a href="{{ url('/shop_items/5') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_rest.jpg') }}"></a>
+          </div>
         </div>
+        
         <div class="row">
             <div class="col-lg-7 col-sm-12">
                    <div id="map_box"></div>
@@ -32,15 +41,10 @@
                   <div><img id="shop_image" src="{{ secure_asset('img/kichijoji_spot_img/lawson.png') }}"></div>
                 </div>
                 <p><img class="ad_img" src="{{ secure_asset('img/ad_c_team.jpg') }}"></p>
-                <p><a href="../post/post.php">投稿ページへのリンク</a></p>
+                <p><a a href="{{ route('post.index') }}"><img id="bannar_to_post" src="{{ secure_asset('img/bannar_to_post.jpg') }}"></a></p>
             </div>
         </div>
       </div>
-        
-        
-    
-    
-    
 
     <script>
       /* global $ */
