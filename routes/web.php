@@ -83,6 +83,5 @@ Route::patch('admin/shop_items/url/{id}', 'AdminController@update_url');
 Route::patch('/admin/shop_items/status/{id}', 'AdminController@update_status');
 
 
-
 //ログイン
 Auth::routes();
