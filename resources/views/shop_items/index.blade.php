@@ -1,5 +1,4 @@
-@extends('layouts.logged_in')
-
+@extends(($login_user === TRUE)?'layouts.logged_in':'layouts.not_logged_in')
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
