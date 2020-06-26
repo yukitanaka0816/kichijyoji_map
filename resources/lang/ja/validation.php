@@ -146,7 +146,9 @@ return [
     */
 
     'attributes' => [
-      'name' => '場所名',
+      'name' => '名前',
+      'email' => 'メールアドレス',
+      'password' => 'パスワード',
       'information' => '店舗情報',
       'tags' => 'カテゴリー',
       'lat' => '経度',

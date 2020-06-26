@@ -24,7 +24,7 @@
                                     <div class="modal-body">
                                         <img src="{{ secure_asset('img/invite.png') }}" class="img-fluid">
                                         <!--リンク先設定！-->
-                                        <form action="{{ route('logout') }}" method="POST">
+                                        <form action="{{ route('register') }}" method="GET">
                                             @csrf
                                             <input  class="signup_button" type="submit" value="いますぐ始める！">
                                         </form>
@@ -76,7 +76,7 @@
                     </li>
                         <!--リンク先を設定！-->
                     <li>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('register') }}" method="GET">
                             @csrf
                             <input  class="signup_button" type="submit" value="新規登録">
                         </form>
