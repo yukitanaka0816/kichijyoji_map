@@ -252,7 +252,7 @@
             //ajaxリクエスト成功時の処理
             .done(function(data){
               //laravel内で処理された結果がdataに入って返ってくる
-              alert('行きたい！に追加しました');
+              alert(data);
             })
             //ajaxリクエスト失敗時の処理
             .fail(function(data){
