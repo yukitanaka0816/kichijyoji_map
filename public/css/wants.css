@@ -6,6 +6,10 @@
 /*    margin: 0px;*/
 /*    padding: 0px;*/
 /*}*/
+#map_box {
+    width: 650px;
+    height: 600px;
+}
 .row {
     padding: 15px;
 }

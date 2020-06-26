@@ -30,7 +30,16 @@ class ShopItemController extends Controller
         $title = 'お店選択画面（トップページ）';
         
         //店舗情報をすべて取得
-        $shop_items = ShopItems::where('status', 1)->get();
+        $shop_items = DB::table('tags')
+                            ->join('shop_items',function($join){
+                                $join->on( 'tags.shop_id', '=', 'shop_items.id');
+                                     
+                            })
+                            ->where('status', 1)
+                            ->groupBy('shop_id')
+                            ->get();
+        //dd($shop_items);
+
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
@@ -83,12 +92,14 @@ class ShopItemController extends Controller
         $title = 'お店選択画面（トップページ）';
         
         //カテゴリー店舗情報を取得
-        $shop_items = DB::table('shop_items')
-                            ->join('tags',function($join) use ($id){
-                                $join->on('shop_items.id', '=', 'tags.shop_id')
+        $shop_items = DB::table('tags')
+                            ->join('shop_items',function($join) use ($id){
+                                $join->on( 'tags.shop_id', '=', 'shop_items.id',)
                                      ->where('tags.category_id', '=', $id);
                             })
+                            ->where('status', 1)
                             ->get();
+        //dd($shop_items);
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
