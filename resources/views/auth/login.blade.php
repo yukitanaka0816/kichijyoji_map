@@ -23,7 +23,7 @@
       </div>
   </form>
   <div class="form-footer">
-    <p><a href="#">新規登録</a></p>
+    <p><a href="{{ route('register') }}">新規登録</a></p>
   </div>
 </div>
 @endsection

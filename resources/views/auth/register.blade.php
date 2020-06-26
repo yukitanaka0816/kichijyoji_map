@@ -34,7 +34,7 @@
     </div>
   </form>
   <div class="form-footer">
-    <p><a href="#">ログイン</a></p>
+    <p><a href="{{ route('login') }}">ログイン</a></p>
   </div>
 </div>
 @endsection
