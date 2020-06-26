@@ -44,14 +44,6 @@
             </div>
         </div>
       </div>
-
-      @if( $login_user === TRUE )
-        @forelse($wants as $want)
-          <p>{{ $want->shop->name }}</p>
-        @empty
-          <p>行きたいところがありません</p>
-        @endforelse
-      @endif
     
 
     <script>
@@ -297,6 +289,40 @@
           return div;
         }
       }
+      
+      //一定時間ごとにwantsテーブル内容を取得、表示
+      $(function(){
+        setInterval(function(){
+          $.ajax({
+              url: '/shop_items/added_wants/',
+              type: 'POST',
+            })
+            //ajaxリクエスト成功時の処理
+            .done(function(data){
+              //laravel内で処理された結果がdataに入って返ってくる
+              var wants = @json($wants);
+              var data = [];
+              for(let i = 0; i < wants.length; i++){
+                data.push(wants[i]["shop"]);
+              }
+              //divboxを生成
+              console.log(data);
+              for (var i = 0; i < data.length; i++){
+                $('<div>', {
+                  id: 'added_name' + data[i]['id'],
+                }).appendTo('#added_items');
+                
+                //divboxのtextを追加
+                $('#added_name' + data[i]['id']).text(data[i]['name']);
+              }
+            })
+            //ajaxリクエスト失敗時の処理
+            .fail(function(data){
+              console.log(data);
+              alert('ajax失敗');
+            });
+        }, 1000);
+      });
       
       //csrfトークンの埋め込み
       $.ajaxSetup({
