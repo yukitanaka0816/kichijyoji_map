@@ -67,7 +67,7 @@
                       <ul class="info_list">
                           <li>営業時間：{{ $want->shop->business_hours }}</li>
                           <li>詳細情報：{{ $want->shop->information }}</li>
-                          <li>ウェブサイト：{{ $want->shop->url }}</li>
+                          <li>ウェブサイト：<a href="{{ $want->shop->url }}">{{ $want->shop->url }}</a></li>
                           <li><a href="{{ route('comments', $want->shop->id )}}">口コミ一覧</a></li>
                       </ul>
                     </div>
