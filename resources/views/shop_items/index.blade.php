@@ -46,6 +46,7 @@
         </div>
       </div>
     <script>
+
       /* global $ */
       //最初に読み込み
       function init(){
@@ -72,11 +73,96 @@
           //id,nameを定義
           var shop_name = shop_items[i]["name"];
           var shop_id = shop_items[i]["id"];
+          var shop_category = shop_items[i]['category_id'];
+          
           //マーカーを立てる
-          let marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"])
+          if(shop_category === 1){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/eat_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 2){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/celebrate_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 3){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/buy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 4){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/enjoy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+            content: infoContent(shop_items[i])
           });
+
+          
+          //マーカーにイベントを追加
+          marker.addListener('click', function(){
+            infoWindow.open(map,marker);
+          });
+          
+          //マーカーを配列にpushして代入
+          markers.push(marker);
+           
+          }if(shop_category === 5){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/rest_small.png',
+            });
+          
           let infoWindow = new google.maps.InfoWindow({
             content: infoContent(shop_items[i])
           });
@@ -86,6 +172,7 @@
           });
           //マーカーを配列にpushして代入
           markers.push(marker);
+           }
         }
         //detailButton
         function infoContent(shop_item) {
@@ -151,7 +238,7 @@
             //ajaxリクエスト成功時の処理
             .done(function(data){
               //laravel内で処理された結果がdataに入って返ってくる
-              alert('行きたい！に追加しました');
+              alert(data);
             })
             //ajaxリクエスト失敗時の処理
             .fail(function(data){
