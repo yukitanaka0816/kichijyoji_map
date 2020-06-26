@@ -31,80 +31,112 @@
 
       google.maps.event.addListener(map, 'click', mylistener);
       
-        
-        // ジオコーダーの生成
-        var geocoder = new google.maps.Geocoder();
-        document.getElementById('search')
-        .addEventListener(
-        'click',
-        function(){
-              geocoder.geocode(
-                // 第一引数にジオコーディングのオプションを設定
-                {
-                  address: document.getElementById('address').value
-                },
-                // 第二引数に結果取得時の動作を設定
-                function(results, status){
-                  // 失敗時の処理
-                  if(status !== 'OK'){
-                    alert('ジオコーディングに失敗しました。結果: ' + status);
-                    return;
-                  }
-                  // 成功した場合、resultsの0番目に結果が取得される。
-                  if(!results[0]){
-                    alert('結果が取得できませんでした');
-                    return;
-                  }
-                  // マップの中心を移動
-                  //スクロールする
-                  map.panTo(results[0].geometry.location);
-                  
-                //formatted_address 書式が整えられた住所の情報
-                  document.getElementById('search_result').innerHTML = results[0].formatted_address;
-                }
-              );
-            }
-          );
-          
-          
-          // クリック位置をリバースジオコーディング
-            map.addListener('click', function(e){
-              geocoder.geocode({
-                location: e.latLng
-              }, function(results, status){
-                if(status !== 'OK'){
-                  alert('リバースジオコーディングに失敗しました。結果: ' + status);
-                  return;
-                }
-            
-                // console.log(results);
-                if(!results[0]){
-                  alert('結果が取得できませんでした。');
-                  return;
-                }
-            
-                // クリックした位置にマーカーを立てる
-                    var added_marker = new google.maps.Marker({
-                      position: e.latLng, // クリックした箇所
-                      map: map,
-                      animation: google.maps.Animation.BOUNCE,
-                      title: results[0].formatted_address
-                    });
-               
-                
-                
-                //document.getElementById('searched_address').value = results[0].formated...
-                //マーカークリックでマーカー、緯度経度削除
-                added_marker.addListener('click', function(e){
-                    this.setMap(null);
-                    document.getElementById("show_lat").innerHTML = null;
-                    document.getElementById("show_lng").innerHTML = null;
-                    document.getElementById("show_lat").value = null;
-                    document.getElementById("show_lng").value = null;
-                });
-              })
-            });
+      // 検索実行ボタンが押下されたとき
+      document.getElementById('search').addEventListener('click', function() {
 
+          var place = document.getElementById('keyword').value;
+          var geocoder = new google.maps.Geocoder();      // geocoderのコンストラクタ
+
+          geocoder.geocode({
+            address: place
+          }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+
+              var bounds = new google.maps.LatLngBounds();
+
+              for (var i in results) {
+                if (results[0].geometry) {
+                  // 緯度経度を取得
+                  var latlng = results[0].geometry.location;
+                  // 住所を取得
+                  var address = results[0].formatted_address;
+                  // 検索結果地が含まれるように範囲を拡大
+                  bounds.extend(latlng);
+                  // マーカーのセット
+                  setMarker(latlng);
+                  // マーカーへの吹き出しの追加
+                  setInfoW(place, latlng, address);
+                  // マーカーにクリックイベントを追加
+                  markerEvent();
+                }
+              }
+            } else if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+              alert("見つかりません");
+            } else {
+              console.log(status);
+              alert("エラー発生");
+            }
+          });
+
+        });
+
+        // 結果クリアーボタン押下時
+        document.getElementById('clear').addEventListener('click', function() {
+          deleteMakers();
+        });
+
+      }
+
+      // マーカーのセットを実施する
+      function setMarker(setplace) {
+        // 既にあるマーカーを削除
+        deleteMakers();
+
+        var iconUrl = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          marker = new google.maps.Marker({
+            position: setplace,
+            map: map,
+            icon: iconUrl
+          });
+        }
+
+      //マーカーを削除する
+      function deleteMakers() {
+          if(marker != null){
+            marker.setMap(null);
+          }
+          marker = null;
+        }
+ 
+          
+      // クリック位置をリバースジオコーディング
+      map.addListener('click', function(e){
+        geocoder.geocode({
+          location: e.latLng
+        }, function(results, status){
+          if(status !== 'OK'){
+            alert('リバースジオコーディングに失敗しました。結果: ' + status);
+            return;
+          }
+      
+          // console.log(results);
+          if(!results[0]){
+            alert('結果が取得できませんでした。');
+            return;
+          }
+      
+          // クリックした位置にマーカーを立てる
+              var added_marker = new google.maps.Marker({
+                position: e.latLng, // クリックした箇所
+                map: map,
+                animation: google.maps.Animation.BOUNCE,
+                title: results[0].formatted_address
+              });
+         
+          
+          
+          //document.getElementById('searched_address').value = results[0].formated...
+          //マーカークリックでマーカー、緯度経度削除
+          added_marker.addListener('click', function(e){
+              this.setMap(null);
+              document.getElementById("show_lat").innerHTML = null;
+              document.getElementById("show_lng").innerHTML = null;
+              document.getElementById("show_lat").value = null;
+              document.getElementById("show_lng").value = null;
+          });
+        })
+      });
+        
     }
 
     function mylistener(event) {
