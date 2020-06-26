@@ -18,17 +18,24 @@ class ShopItemController extends Controller
     
     
     //アクセス確認
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     
     
-    
+
     public function index(){
         
         $title = 'お店選択画面（トップページ）';
         
+        if(null !== \Auth::user()) {
+            $login_user = TRUE;
+            $wants = Wants::order()->get();
+        } else {
+            $login_user = FALSE;
+            $wants = '';
+        }
         //店舗情報をすべて取得
         $shop_items = DB::table('tags')
                             ->join('shop_items',function($join){
@@ -44,6 +51,8 @@ class ShopItemController extends Controller
         return view('shop_items.index', [
             'title' => $title,
             'shop_items' => $shop_items,
+            'wants' => $wants,
+            'login_user' => $login_user,
             ]);
     }
     
@@ -91,6 +100,12 @@ class ShopItemController extends Controller
     public function category($id){
         $title = 'お店選択画面（トップページ）';
         
+        if(null !== \Auth::user()) {
+            $login_user = TRUE;
+        } else {
+            $login_user = FALSE;
+        }
+        
         //カテゴリー店舗情報を取得
         $shop_items = DB::table('tags')
                             ->join('shop_items',function($join) use ($id){
@@ -104,6 +119,7 @@ class ShopItemController extends Controller
         return view('shop_items.index', [
             'title' => $title,
             'shop_items' => $shop_items,
+            'login_user' => $login_user,
             ]);
     
     }

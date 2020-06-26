@@ -1,5 +1,4 @@
-@extends('layouts.logged_in')
-
+@extends(($login_user === TRUE)?'layouts.logged_in':'layouts.not_logged_in')
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
@@ -45,6 +44,15 @@
             </div>
         </div>
       </div>
+
+      @if( $login_user === TRUE )
+        @forelse($wants as $want)
+          <p>{{ $want->shop->name }}</p>
+        @empty
+          <p>行きたいところがありません</p>
+        @endforelse
+      @endif
+    
 
     <script>
 
