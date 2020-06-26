@@ -118,39 +118,43 @@
 
 <body onload="init()">
   <div class="container">
-        <div class="col-lg-7 col-sm-12"></div>
-            <div id="post">
-            <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
-              @csrf
-              <p>場所名：<input type="text" name="name" class="name_field" placeholder="20文字以内・入力必須"></p>
-              <p>店舗情報（予算、駅からの所要時間など）：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・任意"></p>
-              <p>画像：<input type="file" name="image"></p>
-              <p>カテゴリー（複数選択可）：
-                <input type="checkbox" name="categories[]" value="1">食べる
-                <input type="checkbox" name="categories[]" value="2">祝う
-                <input type="checkbox" name="categories[]" value="3">買う
-                <input type="checkbox" name="categories[]" value="4">遊ぶ
-                <input type="checkbox" name="categories[]" value="5">休む
-              </p>
-            </div>
-            <table>
-                <tr><th>緯度</th><td id="show_lat"></td></tr>
-                <tr><th>経度</th><td id="show_lng"></td></tr>
-            </table>
-              <div>
-                  {{--<input type="hidden" name="shop_id" value="{{$shop_item->id}}">--}}
-                  <input type="hidden" name="status" value="0">
-                  <input type="hidden" name="lat" id="lat" value="">
-                  <input type="hidden" name="lng" id="lng" value="">
-                  <input type="submit" value="スポット登録">
-              </div>
-            </form>
-    <div>
-        <p>検索or地図をクリックして場所を指定</p>
-        <label>住所：<input type="text" id="address" placeholder="場所名や住所"></label>
-        <button id="search">検索</button>
-        <p id="search_result"></p>
+    <div class="row">
+      <div class="col-lg-6 col-sm-12">
+        <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
+          @csrf
+          <p>場所名：<input type="text" name="name" class="name_field" placeholder="20文字以内・入力必須"></p>
+          <p>店舗情報（予算、駅からの所要時間など）：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・任意"></p>
+          <p>画像：<input type="file" name="image"></p>
+          <p>カテゴリー（複数選択可）：
+            <input type="checkbox" name="categories[]" value="1">食べる
+            <input type="checkbox" name="categories[]" value="2">祝う
+            <input type="checkbox" name="categories[]" value="3">買う
+            <input type="checkbox" name="categories[]" value="4">遊ぶ
+            <input type="checkbox" name="categories[]" value="5">休む
+          </p>
+          <table>
+          <tr><th>緯度</th><td id="show_lat"></td></tr>
+          <tr><th>経度</th><td id="show_lng"></td></tr>
+          </table>
+          <div>
+            {{--<input type="hidden" name="shop_id" value="{{$shop_item->id}}">--}}
+            <input type="hidden" name="status" value="0">
+            <input type="hidden" name="lat" id="lat" value="">
+            <input type="hidden" name="lng" id="lng" value="">
+            <input type="submit" value="スポット登録">
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-6 col-sm-12">
+        <div>
+            <p>検索or地図をクリックして場所を指定</p>
+            <label>住所：<input type="text" id="address" placeholder="場所名や住所"></label>
+            <button id="search">検索</button>
+            <p id="search_result"></p>
+        </div>
+        <div id="map_box"></div>
+      </div>
     </div>
-    <div id="map_box"></div>
 </body>
+
 @endsection
