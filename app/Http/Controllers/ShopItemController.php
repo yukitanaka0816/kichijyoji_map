@@ -35,8 +35,10 @@ class ShopItemController extends Controller
                                 $join->on( 'tags.shop_id', '=', 'shop_items.id');
                                      
                             })
+                            ->where('status', 1)
                             ->groupBy('shop_id')
                             ->get();
+        //dd($shop_items);
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
@@ -87,6 +89,7 @@ class ShopItemController extends Controller
                                 $join->on( 'tags.shop_id', '=', 'shop_items.id',)
                                      ->where('tags.category_id', '=', $id);
                             })
+                            ->where('status', 1)
                             ->get();
         //dd($shop_items);
         //view読み込み

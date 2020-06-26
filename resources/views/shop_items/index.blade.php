@@ -82,7 +82,7 @@
             let marker = new google.maps.Marker({
               map: map,
               position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
-              icon: '../../img/map_icon/map_eat_sm.png',
+              icon: '../../img/map_icon/eat_small.png',
             });
             
             let infoWindow = new google.maps.InfoWindow({
@@ -102,7 +102,7 @@
             let marker = new google.maps.Marker({
               map: map,
               position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
-              icon: '../../img/map_icon/map_celebrate_sm.png',
+              icon: '../../img/map_icon/celebrate_small.png',
             });
             
             let infoWindow = new google.maps.InfoWindow({
@@ -122,7 +122,7 @@
             let marker = new google.maps.Marker({
               map: map,
               position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
-              icon: '../../img/map_icon/map_buy_sm.png',
+              icon: '../../img/map_icon/buy_small.png',
             });
             
             let infoWindow = new google.maps.InfoWindow({
@@ -142,7 +142,7 @@
             let marker = new google.maps.Marker({
               map: map,
               position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
-              icon: '../../img/map_icon/map_enjoy_sm.png',
+              icon: '../../img/map_icon/enjoy_small.png',
             });
             
             let infoWindow = new google.maps.InfoWindow({
@@ -162,7 +162,7 @@
             let marker = new google.maps.Marker({
               map: map,
               position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
-              icon: '../../img/map_icon/map_rest_sm.png',
+              icon: '../../img/map_icon/rest_small.png',
             });
           
           let infoWindow = new google.maps.InfoWindow({
