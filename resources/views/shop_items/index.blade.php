@@ -36,8 +36,13 @@
             </div>
         </div>
       </div>
-        
-        
+      @if( $login_user === TRUE )
+        @forelse($wants as $want)
+          <p>{{ $want->shop->name }}</p>
+        @empty
+          <p>行きたいところがありません</p>
+        @endforelse
+      @endif
     
     
     

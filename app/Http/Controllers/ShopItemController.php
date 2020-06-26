@@ -29,6 +29,9 @@ class ShopItemController extends Controller
         
         $title = 'お店選択画面（トップページ）';
         
+        if(null !== (\Auth::user())){
+            $wants = Wants::order()->get();
+        }
         //店舗情報をすべて取得
         $shop_items = DB::table('tags')
                             ->join('shop_items',function($join){
@@ -44,6 +47,7 @@ class ShopItemController extends Controller
         return view('shop_items.index', [
             'title' => $title,
             'shop_items' => $shop_items,
+            'wants' => $wants,
             ]);
     }
     
