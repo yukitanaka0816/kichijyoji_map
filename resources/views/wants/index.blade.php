@@ -57,7 +57,7 @@
                 <div id="map_box"></div>
                 
             </div>
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-5 col-sm-12" id="detail_box>
                 <h4>---詳細情報---</h4>
                 @forelse($wants as $want)
                 <label class="info_spot_name">【{{ $want->shop->name }}】</label>
@@ -157,6 +157,5 @@
         }
       }
     </script>
-    {{--<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>--}}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{config('api.api_key')}}&callback=init" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
 @endsection
