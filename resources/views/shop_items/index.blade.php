@@ -30,7 +30,11 @@
             <div class="col-lg-7 col-sm-12">
                    <div id="map_box"></div>
             </div>
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-2 col-sm-12">
+              <h5>行きたい！リスト</h5>
+              <div id="added_items"></div>
+            </div>
+            <div class="col-lg-3 col-sm-12">
                 <h4>---詳細情報---</h4>
                 <div id="side">
                   <div id="shop_name"></div>
@@ -44,8 +48,6 @@
             </div>
         </div>
       </div>
-      
-      <div id="added_items"></div>
 
     <script>
 
