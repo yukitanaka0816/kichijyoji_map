@@ -29,7 +29,7 @@
                   <div id="business_hours"></div>
                   <div id="shop_item_info"></div>
                   <div><a id="url" href=""></a></div>
-                  <div><img id="shop_image" src="{{ asset('img/kichijoji_spot_img/lawson.png') }}"></div>
+                  <div><img id="shop_image" src="{{ asset('img/details_box.png') }}"></div>
                 </div>
                 <p><img class="ad_img" src="{{ asset('img/ad_c_team.jpg') }}"></p>
                 <p><a href="../post/post.php">投稿ページへのリンク</a></p>
