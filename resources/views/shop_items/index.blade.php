@@ -1,7 +1,7 @@
 @extends('layouts.logged_in')
 
 @section('style')
-<link rel="stylesheet" href="{{ secure_asset('css/top.css') }}">
+<link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
 
 @section('title', $title)
@@ -12,11 +12,11 @@
         <p>キーワードで検索する？<input type="text" name="keyword"><input type="submit" name="検索"></p>
         <p>ジャンルで検索する？</p>
         <div class="row">
-            <a href="{{ url('/shop_items/1') }}"><img class="cat_img" src="{{ secure_asset('img/category_eat.jpg') }}"></a>
-            <a href="{{ url('/shop_items/2') }}"><img class="cat_img" src="{{ secure_asset('img/category_celebrate.jpg') }}"></a>
-            <a href="{{ url('/shop_items/3') }}"><img class="cat_img" src="{{ secure_asset('img/category_buy.jpg') }}"></a>
-            <a href="{{ url('/shop_items/4') }}"><img class="cat_img" src="{{ secure_asset('img/category_enjoy.jpg') }}"></a>
-            <a href="{{ url('/shop_items/5') }}"><img class="cat_img" src="{{ secure_asset('img/category_rest.jpg') }}"></a>
+            <a href="{{ url('/shop_items/1') }}"><img class="cat_img" src="{{ asset('img/category_eat.jpg') }}"></a>
+            <a href="{{ url('/shop_items/2') }}"><img class="cat_img" src="{{ asset('img/category_celebrate.jpg') }}"></a>
+            <a href="{{ url('/shop_items/3') }}"><img class="cat_img" src="{{ asset('img/category_buy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/4') }}"><img class="cat_img" src="{{ asset('img/category_enjoy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/5') }}"><img class="cat_img" src="{{ asset('img/category_rest.jpg') }}"></a>
         </div>
         <div class="row">
             <div class="col-lg-7 col-sm-12">
@@ -29,9 +29,9 @@
                   <div id="business_hours"></div>
                   <div id="shop_item_info"></div>
                   <div><a id="url" href=""></a></div>
-                  <div><img id="shop_image" src="{{ secure_asset('img/kichijoji_spot_img/lawson.png') }}"></div>
+                  <div><img id="shop_image" src="{{ asset('img/kichijoji_spot_img/lawson.png') }}"></div>
                 </div>
-                <p><img class="ad_img" src="{{ secure_asset('img/ad_c_team.jpg') }}"></p>
+                <p><img class="ad_img" src="{{ asset('img/ad_c_team.jpg') }}"></p>
                 <p><a href="../post/post.php">投稿ページへのリンク</a></p>
             </div>
         </div>
@@ -133,7 +133,7 @@
               $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
               $('#shop_item_info').text(data['shop_item_info'][0]['information']);
               $('#url').text(data['shop_item_info'][0]['url']);
-              $('#shop_image').attr('src', '{{ secure_asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
+              $('#shop_image').attr('src', '{{ asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
               $('#url').attr('href', data['shop_item_info'][0]['url']);
               //commentを生成
               for (var i = 0; i < data['comments'].length; i++) {

@@ -3,6 +3,9 @@
 /*    margin: 0px;*/
 /*    padding: 0px;*/
 /*}*/
+.row {
+    padding: 15px;
+}
 .footer {
     background-color: #75daad;
     color: #216353;
@@ -67,7 +70,7 @@ table th {
     font-weight: bold; 
 }
 .info_img {
-    width: 40%;
+    width: 100%;
 }
 .info_list {
     list-style-type: none;
@@ -75,4 +78,8 @@ table th {
 }
 .ad_img {
     width: 40%;
+}
+#detail_box {
+    height: 600px;
+    overflow: scroll;
 }
