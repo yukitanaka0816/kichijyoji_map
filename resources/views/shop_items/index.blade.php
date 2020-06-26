@@ -300,11 +300,7 @@
             //ajaxリクエスト成功時の処理
             .done(function(data){
               //laravel内で処理された結果がdataに入って返ってくる
-              var wants = @json($wants);
-              var data = [];
-              for(let i = 0; i < wants.length; i++){
-                data.push(wants[i]["shop"]);
-              }
+            
               //divboxを生成
               console.log(data);
               for (var i = 0; i < data.length; i++){
