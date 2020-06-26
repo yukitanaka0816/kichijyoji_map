@@ -158,5 +158,4 @@
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
-
 @endsection
