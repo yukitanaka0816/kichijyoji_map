@@ -1,11 +1,6 @@
-#map_box {
-    width: 650px;
-    height: 600px;
-}
 .modal-title {
     color: #216353;
 }
-
 .how_to:hover {
     background-color: #99EFC8;
 }
@@ -17,14 +12,16 @@
     border-bottom: thin solid #75daad;
 }
 .cat_img {
-    width: 15%;
-    margin: 0px 10px 10px 10px;
+    width: 100%;
 }
 .article {
     padding: 30px 20px 20px 20px;
 }
+.row {
+    margin-bottom: 30px;
+}
 body {
-        color: #216353;
+    color: #216353;
     }
 #map {
     width: 80%;
@@ -46,9 +43,9 @@ body {
 .ad_img {
     width: 40%;
 }
-
-
-
+#bannar_to_post {
+    width: 60%;
+}
 #shop_image {
     width: 300px;
     height: 300px;
