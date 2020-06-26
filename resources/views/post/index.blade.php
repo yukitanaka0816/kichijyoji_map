@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<script async defer src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{config('api.api_key')}}&callback=init" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key={{ config('const.google-map.apikey') }}&callback=init" async defer></script>
 <script type="text/javascript">
     //<![CDATA[
 
@@ -123,7 +123,7 @@
             <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
               @csrf
               <p>場所名：<input type="text" name="name" class="name_field" placeholder="20文字以内・入力必須"></p>
-              <p>店舗情報：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・入力必須"></p>
+              <p>店舗情報（予算、駅からの所要時間など）：<input type="text" name="information" rows="5" cols="40" placeholder="200文字以内・任意"></p>
               <p>画像：<input type="file" name="image"></p>
               <p>カテゴリー（複数選択可）：
                 <input type="checkbox" name="categories[]" value="1">食べる
