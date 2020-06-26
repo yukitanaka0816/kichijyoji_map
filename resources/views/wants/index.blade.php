@@ -45,7 +45,7 @@
                             <td>
                                 <select name="order[]" form="order_form">
                                   @for($i = 1; $i <= count($wants); $i++)
-                                    <option value="{{ $i }}" @if( $want->order === $i ) selected @endif >{{ $i }}</option>
+                                    <option value="{{ $i }}" @if( $want->order === $i ) selected @endif >{{ $order[$i] }}</option>
                                   @endfor
                                 </select>
                             </td>
