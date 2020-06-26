@@ -31,8 +31,10 @@ class ShopItemController extends Controller
         
         if(null !== \Auth::user()) {
             $login_user = TRUE;
+            $wants = Wants::order()->get();
         } else {
             $login_user = FALSE;
+            $wants = '';
         }
         //店舗情報をすべて取得
         $shop_items = DB::table('tags')
@@ -49,6 +51,7 @@ class ShopItemController extends Controller
         return view('shop_items.index', [
             'title' => $title,
             'shop_items' => $shop_items,
+            'wants' => $wants,
             'login_user' => $login_user,
             ]);
     }
