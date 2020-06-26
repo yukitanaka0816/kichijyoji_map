@@ -57,7 +57,7 @@
                 <div id="map_box"></div>
                 
             </div>
-            <div class="col-lg-5 col-sm-12" id="detail_box>
+            <div class="col-lg-5 col-sm-12" id="detail_box">
                 <h4>---詳細情報---</h4>
                 @forelse($wants as $want)
                 <label class="info_spot_name">【{{ $want->shop->name }}】</label>
