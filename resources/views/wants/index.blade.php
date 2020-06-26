@@ -60,17 +60,6 @@
             <div class="col-lg-5 col-sm-12">
                 <h4>---詳細情報---</h4>
                 @forelse($wants as $want)
-<<<<<<< HEAD
-                <div>
-                    <label class="info_spot_name">【{{ $want->shop->name }}】</label>
-                    <p></p><img class="info_img" src="{{ asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></p>
-                    <ul class="info_list">
-                        <li>営業時間：{{ $want->shop->business_hours }}</li>
-                        <li>詳細情報：{{ $want->shop->information }}</li>
-                        <li>ウェブサイト：{{ $want->shop->url }}</li>
-                        <li><a href="">口コミ一覧</a></li>
-                    </ul>
-=======
                 <label class="info_spot_name">【{{ $want->shop->name }}】</label>
                 <div class="row">
                     <div class="col-6"><img class="info_img" src="{{ asset('/img/kichijoji_spot_img/') }}/{{ $want->shop->image }}"></div>
@@ -82,7 +71,6 @@
                           <li><a href="{{ route('comments', $want->shop->id )}}">口コミ一覧</a></li>
                       </ul>
                     </div>
->>>>>>> develop
                 </div>
                 @empty
                 <div>行きたいところを追加しよう</div>
