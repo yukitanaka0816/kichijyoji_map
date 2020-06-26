@@ -1,7 +1,7 @@
 @extends('layouts.logged_in')
 
 @section('style')
-<link rel="stylesheet" href="{{ secure_asset('css/top.css') }}">
+<link rel="stylesheet" href="{{ asset('css/top.css') }}">
 @endsection
 
 @section('title', $title)
@@ -11,19 +11,19 @@
         <h5>行きたいスポットをジャンルから検索できます♪</h5>
         <div class="row" id="top-row">
           <div class="col-2">
-            <a href="{{ url('/shop_items/1') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_eat.jpg') }}"></a>
+            <a href="{{ url('/shop_items/1') }}"><img class="cat_img img-fluid" src="{{ asset('img/category_eat.jpg') }}"></a>
           </div>
           <div class="col-2">
-            <a href="{{ url('/shop_items/2') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_celebrate.jpg') }}"></a>
+            <a href="{{ url('/shop_items/2') }}"><img class="cat_img img-fluid" src="{{ asset('img/category_celebrate.jpg') }}"></a>
           </div>
           <div class="col-2">
-            <a href="{{ url('/shop_items/3') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_buy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/3') }}"><img class="cat_img img-fluid" src="{{ asset('img/category_buy.jpg') }}"></a>
           </div>
           <div class="col-2">
-            <a href="{{ url('/shop_items/4') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_enjoy.jpg') }}"></a>
+            <a href="{{ url('/shop_items/4') }}"><img class="cat_img img-fluid" src="{{ asset('img/category_enjoy.jpg') }}"></a>
           </div>
           <div class="col-2">
-            <a href="{{ url('/shop_items/5') }}"><img class="cat_img img-fluid" src="{{ secure_asset('img/category_rest.jpg') }}"></a>
+            <a href="{{ url('/shop_items/5') }}"><img class="cat_img img-fluid" src="{{ asset('img/category_rest.jpg') }}"></a>
           </div>
         </div>
         
@@ -38,15 +38,16 @@
                   <div id="business_hours"></div>
                   <div id="shop_item_info"></div>
                   <div><a id="url" href=""></a></div>
-                  <div><img id="shop_image" src="{{ secure_asset('img/kichijoji_spot_img/lawson.png') }}"></div>
+                  <div><img id="shop_image" src="{{ asset('img/details_box.png') }}"></div>
                 </div>
-                <p><img class="ad_img" src="{{ secure_asset('img/ad_c_team.jpg') }}"></p>
-                <p><a a href="{{ route('post.index') }}"><img id="bannar_to_post" src="{{ secure_asset('img/bannar_to_post.jpg') }}"></a></p>
+                <p><img class="ad_img" src="{{ asset('img/ad_c_team.jpg') }}"></p>
+                <p><a a href="{{ route('post.index') }}"><img id="bannar_to_post" src="{{ asset('img/bannar_to_post.jpg') }}"></a></p>
             </div>
         </div>
       </div>
 
     <script>
+
       /* global $ */
       //最初に読み込み
       function init(){
@@ -78,14 +79,96 @@
           //id,nameを定義
           var shop_name = shop_items[i]["name"];
           var shop_id = shop_items[i]["id"];
+          var shop_category = shop_items[i]['category_id'];
           
           //マーカーを立てる
-          let marker = new google.maps.Marker({
-            map: map,
-            position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"])
+          if(shop_category === 1){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/eat_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 2){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/celebrate_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 3){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/buy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+              content: infoContent(shop_items[i])
+            });
+
+          
+            //マーカーにイベントを追加
+            marker.addListener('click', function(){
+              infoWindow.open(map,marker);
+            });
+            
+            //マーカーを配列にpushして代入
+            markers.push(marker);
+           
+          }else if(shop_category === 4){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/enjoy_small.png',
+            });
+            
+            let infoWindow = new google.maps.InfoWindow({
+            content: infoContent(shop_items[i])
+          });
+
+          
+          //マーカーにイベントを追加
+          marker.addListener('click', function(){
+            infoWindow.open(map,marker);
           });
           
-
+          //マーカーを配列にpushして代入
+          markers.push(marker);
+           
+          }if(shop_category === 5){
+            let marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(shop_items[i]["lat"],shop_items[i]["lng"]),
+              icon: '../../img/map_icon/rest_small.png',
+            });
+          
           let infoWindow = new google.maps.InfoWindow({
             content: infoContent(shop_items[i])
           });
@@ -98,6 +181,7 @@
           
           //マーカーを配列にpushして代入
           markers.push(marker);
+           }
         }
 
         
@@ -137,7 +221,7 @@
               $('#business_hours').text(data['shop_item_info'][0]['business_hours']);
               $('#shop_item_info').text(data['shop_item_info'][0]['information']);
               $('#url').text(data['shop_item_info'][0]['url']);
-              $('#shop_image').attr('src', '{{ secure_asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
+              $('#shop_image').attr('src', '{{ asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
               $('#url').attr('href', data['shop_item_info'][0]['url']);
               //commentを生成
               for (var i = 0; i < data['comments'].length; i++) {
@@ -172,7 +256,7 @@
             //ajaxリクエスト成功時の処理
             .done(function(data){
               //laravel内で処理された結果がdataに入って返ってくる
-              alert('行きたい！に追加しました');
+              alert(data);
             })
             //ajaxリクエスト失敗時の処理
             .fail(function(data){

@@ -8,6 +8,8 @@ use App\ShopItems;
 use App\Wants;
 use App\Comment;
 use App\Users;
+use App\Tag;
+use DB;
 
 class ShopItemController extends Controller
 {
@@ -28,8 +30,16 @@ class ShopItemController extends Controller
         $title = 'お店選択画面（トップページ）';
         
         //店舗情報をすべて取得
-        $shop_items = ShopItems::all();
-        
+        $shop_items = DB::table('tags')
+                            ->join('shop_items',function($join){
+                                $join->on( 'tags.shop_id', '=', 'shop_items.id');
+                                     
+                            })
+                            ->where('status', 1)
+                            ->groupBy('shop_id')
+                            ->get();
+        //dd($shop_items);
+
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
@@ -63,15 +73,40 @@ class ShopItemController extends Controller
         
         $user_id = \Auth::user()->id;
         
-        Wants::create([
-            'user_id' => $user_id,
-            'shop_id' => $shop_id,
-            'order' => 1,
-            ]);
+        $wants = \Auth::user()->user_wants()->get('shop_id');
         
+        if (count($wants) < 9) {
+            Wants::create([
+                'user_id' => $user_id,
+                'shop_id' => $shop_id,
+                'order' => count($wants) + 1,
+                ]);
+            return '行きたい！に追加しました。';
+        } else {
+            return '行きたい！は8個までです。';
+        }
+        return(count($wants));
     }
     
+    public function category($id){
+        $title = 'お店選択画面（トップページ）';
+        
+        //カテゴリー店舗情報を取得
+        $shop_items = DB::table('tags')
+                            ->join('shop_items',function($join) use ($id){
+                                $join->on( 'tags.shop_id', '=', 'shop_items.id',)
+                                     ->where('tags.category_id', '=', $id);
+                            })
+                            ->where('status', 1)
+                            ->get();
+        //dd($shop_items);
+        //view読み込み
+        return view('shop_items.index', [
+            'title' => $title,
+            'shop_items' => $shop_items,
+            ]);
     
+    }
     
     public function sample(){
         

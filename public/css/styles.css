@@ -1,8 +1,3 @@
-#map_box {
-    width: 650px;
-    height: 600px;
-}
-
 .footer {
     background-color: #75daad;
     color: #216353;
@@ -17,12 +12,13 @@
     background-color: #75daad;
 }
 .how_to {
-    color: #216353;
-    background-color: #75daad;
+    color: #ffffff;
+    background-color: #216353;
     position: relative;
     display: inline-block;
     font-weight: bold;
     padding: 0.25em 0.5em;
+    margin: 2px 5px;
     text-decoration: none;
     transition: .4s;
     border: none;
@@ -33,4 +29,52 @@
 }
 .navbar-logo {
     width: 65%;
+}
+.logout_button {
+    color: #216353;
+    background-color: #75daad;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    margin: 2px 5px;
+    text-decoration: none;
+    transition: .4s;
+    border: none;
+}
+.login_button {
+    color: #216353;
+    background-color: #75daad;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    margin: 2px 5px;
+    text-decoration: none;
+    transition: .4s;
+    border: none;
+}
+.signup_button {
+    color: #ffffff;
+    background-color: #f56e73;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    margin: 2px 5px;
+    text-decoration: none;
+    transition: .4s;
+    border: none;
+}
+
+.logout_button:hover {
+    background-color: #99efc8;
+}
+
+.login_button:hover {
+    background-color: #99efc8;
+}
+
+.signup_button:hover {
+    background-color: #99efc8;
 }

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    public $fillable = ['status'];
+    protected $fillable = ['status', 'bussiness_hours', 'url'];
 }

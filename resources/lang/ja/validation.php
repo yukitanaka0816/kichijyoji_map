@@ -12,7 +12,7 @@ return [
     | 持っているものもあります。メッセージはご自由に調整してください。
     |
     */
-
+    
     'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeが有効なURLではありません。',
     'after'                => ':attributeには、:dateより後の日付を指定してください。',
@@ -146,9 +146,10 @@ return [
     */
 
     'attributes' => [
-        'name' => '名前',
-        'email' => 'メールアドレス',
-        'content' => 'お問い合わせ内容',
+      'name' => '場所名',
+      'information' => '店舗情報',
+      'tags' => 'カテゴリー',
+      'lat' => '経度',
+      'lng' => '緯度',
     ],
-
 ];

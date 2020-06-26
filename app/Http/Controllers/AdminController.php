@@ -53,6 +53,32 @@ class AdminController extends Controller
         return redirect('/admin/shop_items');
     }
     
+    public function update_bussiness_hours(Request $request, $id) {
+        $shop_item = ShopItems::find($id);
+        $shop_item->save([
+            'url' => $request->url,
+            'status' => $request->status,
+        ]);
+        $shop_item->update([
+            'bussiness_hours' => $request->update_bussiness_hours,
+        ]);
+        \Session::flash('success', '営業時間を変更しました');
+        return redirect('/admin/shop_items');
+    }
+    
+    public function update_url(Request $request, $id) {
+        $shop_item = ShopItems::find($id);
+        $shop_item->save([
+            'bussiness_hours' => $request->bussiness_hours,
+            'status' => $request->status,
+        ]);
+        $shop_item->update([
+            'url' => $request->update_url,
+        ]);
+        \Session::flash('success', 'URLを変更しました');
+        return redirect('/admin/shop_items');
+    }
+    
     
     public function __construct()
     {

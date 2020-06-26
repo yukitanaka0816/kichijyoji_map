@@ -11,9 +11,10 @@
             <input type="submit" value="ログアウト">
         </form>
     </div>
-    
-    <a href="{{ url('/admin/shop_items') }}">お店一覧ページ</a>
-    <a href="{{ url('/admin/inquiries') }}">お問い合わせ一覧ページ</a>
+    <ul>
+        <li><a href="{{ url('/admin/shop_items') }}">お店一覧ページ</a></li>
+        <li><a href="{{ url('/admin/inquiries') }}">お問い合わせ一覧ページ</a></li>
+    </ul>
     <table>
         <tr>
             <th>ユーザー名</th>

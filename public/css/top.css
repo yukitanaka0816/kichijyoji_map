@@ -1,4 +1,7 @@
-
+#map_box {
+    width: 650px;
+    height: 600px;
+}
 .modal-title {
     color: #216353;
 }

@@ -17,6 +17,7 @@ class CreateTagsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('shop_id');
             $table->unsignedBigInteger('category_id');
+            $table->timestamps();
             
             $table->foreign('shop_id')->references('id')->on('shop_items')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
