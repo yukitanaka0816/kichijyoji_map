@@ -52,6 +52,10 @@ body {
     width: 60%;
 }
 #shop_image {
-    width: 300px;
-    height: 300px;
+    width: 50%;
+    height: 50%;
+}
+#side {
+    height: 600px;
+    overflow: auto;
 }

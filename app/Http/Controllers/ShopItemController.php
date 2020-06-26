@@ -90,9 +90,9 @@ class ShopItemController extends Controller
                 'shop_id' => $shop_id,
                 'order' => count($wants) + 1,
                 ]);
-            return '行きたい！に追加しました。';
+            return 'ルートに追加しました。「ルート」からルートが作成できます。';
         } else {
-            return '行きたい！は8個までです。';
+            return 'ルートに追加できるスポットは8個までです。';
         }
         return(count($wants));
     }
