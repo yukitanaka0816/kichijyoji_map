@@ -30,7 +30,7 @@ class ShopItemController extends Controller
         $title = 'お店選択画面（トップページ）';
         
         //店舗情報をすべて取得
-        $shop_items = ShopItems::all();
+        $shop_items = ShopItems::where('status', 1)->get();
         //view読み込み
         return view('shop_items.index', [
             'title' => $title,
@@ -66,16 +66,17 @@ class ShopItemController extends Controller
         
         $wants = \Auth::user()->user_wants()->get('shop_id');
         
-        if ($wants.length < 9) {
+        if (count($wants) < 9) {
             Wants::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
-                'order' => $wants.lengt,
+                'order' => 1,
                 ]);
+            return '行きたい！に追加しました。';
         } else {
-            \Session::flash('error', '行きたい！は8個までです。');
+            return '行きたい！は8個までです。';
         }
-        
+        return(count($wants));
     }
     
     public function category($id){
