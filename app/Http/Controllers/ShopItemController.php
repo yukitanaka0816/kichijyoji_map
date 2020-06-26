@@ -102,8 +102,10 @@ class ShopItemController extends Controller
         
         if(null !== \Auth::user()) {
             $login_user = TRUE;
+            $wants = Wants::order()->get();
         } else {
             $login_user = FALSE;
+            $wants = '';
         }
         
         //カテゴリー店舗情報を取得
@@ -120,6 +122,7 @@ class ShopItemController extends Controller
             'title' => $title,
             'shop_items' => $shop_items,
             'login_user' => $login_user,
+            'wants' => $wants,
             ]);
     
     }
