@@ -66,16 +66,17 @@ class ShopItemController extends Controller
         
         $wants = \Auth::user()->user_wants()->get('shop_id');
         
-        if ($wants.length < 9) {
+        if (count($wants) < 9) {
             Wants::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
-                'order' => $wants.lengt + 1,
+                'order' => 1,
                 ]);
+            return '行きたい！に追加しました。';
         } else {
-            \Session::flash('error', '行きたい！は8個までです。');
+            return '行きたい！は8個までです。';
         }
-        
+        return(count($wants));
     }
     
     public function category($id){
