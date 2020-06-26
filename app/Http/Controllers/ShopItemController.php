@@ -90,9 +90,9 @@ class ShopItemController extends Controller
                 'shop_id' => $shop_id,
                 'order' => count($wants) + 1,
                 ]);
-            return '行きたい！に追加しました。';
+            return 'ルートに追加しました。「ルート」からルートが作成できます。';
         } else {
-            return '行きたい！は8個までです。';
+            return 'ルートに追加できるスポットは8個までです。';
         }
         return(count($wants));
     }
@@ -132,5 +132,29 @@ class ShopItemController extends Controller
         return view('samples.index', [
             'title' => 'サンプル'
             ]);
+    }
+    
+     public function wants(){
+        //$wants = Wants::where('user_id', '=', \Auth::user()->id)->get();
+        //ユーザーが持っている行きたいところリスト
+        $wants = \Auth::user()->user_wants()->pluck('shop_id');
+        // $wants = DB::table('wants')
+        //             ->join('shop_items', function($join){
+        //                 $join->on('wants.shop_id', '=', 'shop_items.id')
+        //                 ->join('users', function($join) use ($user_id) {
+        //                     $join->on('wants.user_id', '=', 'users.id')
+        //                     ->where('wants.user_id', '=', $user_id);
+        //                 });
+        //             });
+        
+        $shop_items = [];
+        for ($i = 0; $i < count($wants); $i++) {
+            $shop_item = ShopItems::where('id', $wants[$i])->get();
+            $shop_items[] = $shop_item;
+        }
+        
+        //$wants = ShopItems::where('id', \Auth::user()->user_wants()->get('shop_id'))->get();
+        
+        return $shop_items;
     }
 }

@@ -22,9 +22,9 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="{{ secure_asset('img/invite.png') }}" class="img-fluid">
+                                        <img src="{{ asset('img/invite.png') }}" class="img-fluid">
                                         <!--リンク先設定！-->
-                                        <form action="{{ route('logout') }}" method="POST">
+                                        <form action="{{ route('register') }}" method="GET">
                                             @csrf
                                             <input  class="signup_button" type="submit" value="いますぐ始める！">
                                         </form>
@@ -39,7 +39,7 @@
                         </div>
                     </li>
                     <li class="nav-item invite" data-toggle="modal" data-target="#modal_invite">
-                        <a href="#" class="nav-link"><img class="nav_icon" src="{{ secure_asset('img/nav_icon.png') }}"> 地点登録</a>
+                        <a href="#" class="nav-link"><img class="nav_icon" src="{{ asset('img/nav_icon.png') }}"> 地点登録</a>
                         <div class="modal fade" id="modal_invite">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -49,7 +49,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="{{ secure_asset('img/invite.png') }}" class="img-fluid">
+                                        <img src="{{ asset('img/invite.png') }}" class="img-fluid">
                                         <!--リンク先設定！-->
                                         <form action="{{ route('logout') }}" method="POST">
                                             @csrf
@@ -76,7 +76,7 @@
                     </li>
                         <!--リンク先を設定！-->
                     <li>
-                        <form action="{{ route('logout') }}" method="POST">
+                        <form action="{{ route('register') }}" method="GET">
                             @csrf
                             <input  class="signup_button" type="submit" value="新規登録">
                         </form>

@@ -25,19 +25,15 @@ class PostPlaceRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:20'],
-            'business_hours' => ['nullable'],
             'image' => [
             'file', // ファイルがアップロードされている
             'image', // 画像ファイルである
             'mimes:jpeg,png', // 形式はjpegかpng
             'dimensions:min_width=50,min_height=50,max_width=1000,max_height=1000', // 50*50 ~ 1000*1000 まで
             ],
-            //'status' => ['required'],
-            'information' => ['required', 'max:200'],
+            'information' => ['nullable', 'max:200'],
             'lat' => ['required'],
             'lng' => ['required'],
-            'url' => ['nullable'],
-            
         ];
     }
 }

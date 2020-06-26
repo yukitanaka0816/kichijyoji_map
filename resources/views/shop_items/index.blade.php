@@ -44,15 +44,8 @@
             </div>
         </div>
       </div>
-
-      @if( $login_user === TRUE )
-        @forelse($wants as $want)
-          <p>{{ $want->shop->name }}</p>
-        @empty
-          <p>行きたいところがありません</p>
-        @endforelse
-      @endif
-    
+      
+      <div id="added_items"></div>
 
     <script>
 
@@ -232,6 +225,10 @@
               $('#shop_image').attr('src', '{{ asset('/img/kichijoji_spot_img/') }}' + '/' + data['shop_item_info'][0]['image'] );
               $('#url').attr('href', data['shop_item_info'][0]['url']);
               //commentを生成
+              $('<h4>', {
+                id: 'comment_title'
+              }).appendTo('#side');
+              $('#comment_title').text('コメント一覧');
               for (var i = 0; i < data['comments'].length; i++) {
                 //divboxを生成
                 $('<div>', {
@@ -249,7 +246,7 @@
             });
           });
           
-          add_button.innerHTML = '行きたい！';
+          add_button.innerHTML = 'ルート追加';
           add_button.className = 'add_wants';
           add_button.dataset.shop_item_id = shop_item['id'];
           
@@ -274,7 +271,7 @@
           });
           
           
-          comment_button.innerHTML = 'コメント';
+          comment_button.innerHTML = '口コミ';
           comment_button.className = 'add_comment';
           comment_button.dataset.shop_item_id = shop_item['id'];
           
@@ -293,6 +290,37 @@
           return div;
         }
       }
+      
+      //一定時間ごとにwantsテーブル内容を取得、表示
+      $(function(){
+        setInterval(function(){
+          $.ajax({
+              url: '/shop_items/added_wants/',
+              type: 'POST',
+            })
+            //ajaxリクエスト成功時の処理
+            .done(function(data){
+              //laravel内で処理された結果がdataに入って返ってくる
+            
+              //divboxを生成
+              console.log(data);
+              $('#added_items').html('');
+              for (var i = 0; i < data.length; i++){
+                $('<div>', {
+                  id: 'added_name' + data[i][0]['id'],
+                }).appendTo('#added_items');
+                
+                //divboxのtextを追加
+                $('#added_name' + data[i][0]['id']).text(data[i][0]['name']);
+              }
+            })
+            //ajaxリクエスト失敗時の処理
+            .fail(function(data){
+              console.log(data);
+              alert('ajax失敗');
+            });
+        }, 1000);
+      });
       
       //csrfトークンの埋め込み
       $.ajaxSetup({

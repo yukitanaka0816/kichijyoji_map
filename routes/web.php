@@ -27,6 +27,7 @@ Route::post('/shop_items/wants/{shop_id}', 'ShopItemController@toggleWant')->nam
 
 Route::post('/shop_items/store/{shop_id}', 'CommentController@store')->name('shop_items.store');
 
+Route::post('/shop_items/added_wants', 'ShopItemController@wants')->name('shop_items.wants_list');
 
 
 //ルート作成画面
