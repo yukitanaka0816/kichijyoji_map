@@ -70,7 +70,7 @@ class ShopItemController extends Controller
             Wants::create([
                 'user_id' => $user_id,
                 'shop_id' => $shop_id,
-                'order' => 1,
+                'order' => count($wants) + 1,
                 ]);
             return '行きたい！に追加しました。';
         } else {
