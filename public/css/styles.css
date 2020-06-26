@@ -29,3 +29,19 @@
 .navbar-logo {
     width: 65%;
 }
+
+.logout_button {
+    color: #216353;
+    background-color: #75daad;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    margin: 2px 5px;
+    text-decoration: none;
+    transition: .4s;
+    border: none;
+}
+.logout_button:hover {
+    background-color: #99efc8;
+}
