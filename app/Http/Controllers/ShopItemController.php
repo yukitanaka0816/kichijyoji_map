@@ -134,7 +134,7 @@ class ShopItemController extends Controller
      public function wants(){
         //$wants = Wants::where('user_id', '=', \Auth::user()->id)->get();
         //ユーザーが持っている行きたいところリスト
-        $wants = \Auth::user()->user_wants()->get('shop_id');
+        $wants = \Auth::user()->user_wants()->pluck('shop_id');
         // $wants = DB::table('wants')
         //             ->join('shop_items', function($join){
         //                 $join->on('wants.shop_id', '=', 'shop_items.id')
@@ -144,14 +144,14 @@ class ShopItemController extends Controller
         //                 });
         //             });
         
-        // $shop_items = [];
-        // for ($i = 0; $i < $wants.length; $i++) {
-        //     $shop_item = ShopItems::where('id', $wants[$i]['shop_id']);
-        //     $shop_items[] = $shop_item;
-        // }
+        $shop_items = [];
+        for ($i = 0; $i < count($wants); $i++) {
+            $shop_item = ShopItems::where('id', $wants[$i])->get();
+            $shop_items[] = $shop_item;
+        }
         
         //$wants = ShopItems::where('id', \Auth::user()->user_wants()->get('shop_id'))->get();
         
-        return $wants;
+        return $shop_items;
     }
 }

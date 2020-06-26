@@ -44,7 +44,8 @@
             </div>
         </div>
       </div>
-    
+      
+      <div id="added_items"></div>
 
     <script>
 
@@ -303,13 +304,14 @@
             
               //divboxを生成
               console.log(data);
+              $('#added_items').html('');
               for (var i = 0; i < data.length; i++){
                 $('<div>', {
-                  id: 'added_name' + data[i]['id'],
+                  id: 'added_name' + data[i][0]['id'],
                 }).appendTo('#added_items');
                 
                 //divboxのtextを追加
-                $('#added_name' + data[i]['id']).text(data[i]['name']);
+                $('#added_name' + data[i][0]['id']).text(data[i][0]['name']);
               }
             })
             //ajaxリクエスト失敗時の処理
